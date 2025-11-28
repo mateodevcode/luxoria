@@ -7,7 +7,7 @@ import Image from "next/image";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { navbarImages } from "@/data/imagenes";
 
-export default function Shop() {
+export default function Comprar() {
   const [isOpen, setIsOpen] = useState(false);
   const timeoutRef = useRef(null);
   const [scrolled, setScrolled] = useState(false);
@@ -70,7 +70,7 @@ export default function Shop() {
         onMouseEnter={open}
         onMouseLeave={scheduleClose}
       >
-        Inicio
+        Comprar
         <span className="absolute left-0 -bottom-1 w-0 h-px dark:bg-primero bg-segundo transition-all duration-300 group-hover:w-full"></span>
       </li>
 

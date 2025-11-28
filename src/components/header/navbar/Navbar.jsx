@@ -9,9 +9,9 @@ import { HiMenuAlt2 } from "react-icons/hi";
 import { logo } from "@/data/logo";
 import Link from "next/link";
 import { AppContext } from "@/context/AppContext";
-import Shop from "../hover-card/Shop";
 import Community from "../hover-card/Community";
 import { Phone } from "lucide-react";
+import Comprar from "../hover-card/Comprar";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -68,11 +68,11 @@ const Navbar = () => {
         {/* Links */}
         <nav className="hidden md:flex">
           <ul className="flex items-center gap-10 font-semibold">
-            <Shop />
             <li className="relative group cursor-pointer font-montserrat dark:text-primero text-segundo font-medium text-sm">
-              Comprar
+              Inicio
               <span className="absolute left-0 -bottom-1 w-0 h-px dark:bg-primero bg-segundo transition-all duration-300 group-hover:w-full"></span>
             </li>
+            <Comprar />
             <li className="relative group cursor-pointer font-montserrat dark:text-primero text-segundo font-medium text-sm">
               Productos
               <span className="absolute left-0 -bottom-1 w-0 h-px dark:bg-primero bg-segundo transition-all duration-300 group-hover:w-full"></span>

@@ -45,7 +45,7 @@ export default function SearchResult() {
             {/* Botón de cerrar */}
             <div className="flex flex-col items-start w-8/12 mx-auto pt-32 font-montserrat">
               <div className="w-full flex flex-col mb-4">
-                <div className="w-full flex justify-between items-center border-b-[1px] border-blackbase-500/20 dark:border-whitebase-500/20 pb-2">
+                <div className="w-full flex justify-between items-center border-b border-blackbase-500/20 dark:border-whitebase-500/20 pb-2">
                   <span className="text-blackbase-500 dark:text-whitebase-500 text-lg">
                     Suggestions
                   </span>
@@ -62,7 +62,7 @@ export default function SearchResult() {
                 </div>
               </div>
               <div className="w-full flex flex-col mb-4">
-                <div className="w-full flex justify-between items-center border-b-[1px] border-blackbase-500/20 dark:border-whitebase-500/20 pb-2">
+                <div className="w-full flex justify-between items-center border-b border-blackbase-500/20 dark:border-whitebase-500/20 pb-2">
                   <span className="text-blackbase-500 dark:text-whitebase-500">
                     Productos
                   </span>
@@ -119,7 +119,7 @@ export default function SearchResult() {
                 </div>
               </div>
               <div className="w-full flex flex-col mb-4">
-                <div className="w-full flex justify-between items-center border-b-[1px] border-blackbase-500/20 dark:border-whitebase-500/20 pb-2">
+                <div className="w-full flex justify-between items-center border-b border-blackbase-500/20 dark:border-whitebase-500/20 pb-2">
                   <span className="text-blackbase-500 dark:text-whitebase-500 text-lg">
                     Collections
                   </span>
@@ -134,8 +134,8 @@ export default function SearchResult() {
                   </ul>
                 </div>
               </div>
-              <div className="border-[1px] border-blackbase-500 dark:border-whitebase-500 p-4 flex justify-between items-center text-blackbase-500 dark:text-whitebase-500 cursor-pointer hover:bg-blackbase-500/5 dark:hover:bg-whitebase-500/5 duration-75 active:scale-95 uppercase font-semibold rounded-md px-6">
-                <span>search for "s"</span>
+              <div className="border-px border-blackbase-500 dark:border-whitebase-500 p-4 flex justify-between items-center text-blackbase-500 dark:text-whitebase-500 cursor-pointer hover:bg-blackbase-500/5 dark:hover:bg-whitebase-500/5 duration-75 active:scale-95 uppercase font-semibold rounded-md px-6">
+                <span>{`search for "s"`}</span>
                 <MdKeyboardArrowRight className="text-3xl" />
               </div>
             </div>
