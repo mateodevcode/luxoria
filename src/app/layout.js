@@ -25,7 +25,7 @@ const geistMontserrat = Geist({
 });
 
 export const metadata = {
-  title: "Luxoria | Jewelry",
+  title: "Luxoria | Joyería",
   description: "Compra tus joyas al mejor precio.",
 };
 

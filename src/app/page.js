@@ -5,6 +5,7 @@ import Hero from "@/components/hero/Hero";
 import { scrollbarStyles } from "@/data/data.styles.scrollbar";
 import Beneficios from "@/components/beneficios/Beneficios";
 import Productos from "@/components/productos/Productos";
+import Footer from "@/components/footer/Footer";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <Colecciones />
       <Beneficios />
       <Productos />
+      <Footer />
       <style>{scrollbarStyles.home}</style>
     </div>
   );

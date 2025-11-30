@@ -8,7 +8,7 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { enlacesShop } from "@/data/enlaces";
 import { navbarImages } from "@/data/imagenes";
 
-export default function Community() {
+export default function Esmeraldas() {
   const [isOpen, setIsOpen] = useState(false);
   const timeoutRef = useRef(null);
   const [scrolled, setScrolled] = useState(false);
@@ -54,12 +54,12 @@ export default function Community() {
     <div className="relative inline-block">
       {/* Enlace */}
       <li
-        className="relative group cursor-pointer font-montserrat dark:text-primero text-segundo font-medium text-sm"
+        className="relative group cursor-pointer text-segundo text-sm"
         onMouseEnter={open}
         onMouseLeave={scheduleClose}
       >
         Esmeraldas
-        <span className="absolute left-0 -bottom-1 w-0 h-px dark:bg-primero bg-segundo transition-all duration-300 group-hover:w-full"></span>
+        <span className="absolute left-0 -bottom-1 w-0 h-px bg-segundo transition-all duration-300 group-hover:w-full"></span>
       </li>
 
       {/* Hover Card */}
@@ -72,7 +72,7 @@ export default function Community() {
           onMouseEnter={enterCard}
           onMouseLeave={leaveCard}
           className={`fixed left-0 right-0 ${
-            scrolled ? "top-14" : "top-20"
+            scrolled ? "top-28" : "top-34"
           } h-[80svh] bg-primero dark:bg-segundo shadow-lg border-b z-50 overflow-hidden`}
           style={{
             zIndex: 999,

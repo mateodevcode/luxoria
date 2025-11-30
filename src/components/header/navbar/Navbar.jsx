@@ -9,9 +9,9 @@ import { HiMenuAlt2 } from "react-icons/hi";
 import { logo } from "@/data/logo";
 import Link from "next/link";
 import { AppContext } from "@/context/AppContext";
-import Community from "../hover-card/Community";
 import { Phone } from "lucide-react";
 import Comprar from "../hover-card/Comprar";
+import Esmeraldas from "../hover-card/Esmeraldas";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -31,7 +31,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`sticky top-0 z-30 transition-colors duration-30 ${
+      className={`sticky top-0 z-30 transition-colors duration-300 font-poppins font-light ${
         scrolled
           ? "bg-primero/50 backdrop-blur-sm hover:bg-primero dark:bg-segundo/50 dark:hover:bg-segundo"
           : "bg-primero dark:bg-segundo"
@@ -59,26 +59,24 @@ const Navbar = () => {
         <div className="flex items-center gap-8 mx-5 md:mx-10 w-10 md:w-48">
           <button className="flex items-center gap-2">
             <Phone className="w-3 h-3" />
-            <span className="text-sm font-medium font-montserrat">
-              +57 304 6005435
-            </span>
+            <span className="text-sm">+57 304 6005435</span>
           </button>
         </div>
 
         {/* Links */}
         <nav className="hidden md:flex">
-          <ul className="flex items-center gap-10 font-semibold">
-            <li className="relative group cursor-pointer font-montserrat dark:text-primero text-segundo font-medium text-sm">
+          <ul className="flex items-center gap-10">
+            <li className="relative group cursor-pointer dark:text-primero text-segundo text-sm">
               Inicio
               <span className="absolute left-0 -bottom-1 w-0 h-px dark:bg-primero bg-segundo transition-all duration-300 group-hover:w-full"></span>
             </li>
             <Comprar />
-            <li className="relative group cursor-pointer font-montserrat dark:text-primero text-segundo font-medium text-sm">
+            <li className="relative group cursor-pointer dark:text-primero text-segundo text-sm">
               Productos
               <span className="absolute left-0 -bottom-1 w-0 h-px dark:bg-primero bg-segundo transition-all duration-300 group-hover:w-full"></span>
             </li>
-            <Community />
-            <li className="relative group cursor-pointer text-cuarto  font-montserrat text-sm font-medium uppercase">
+            <Esmeraldas />
+            <li className="relative group cursor-pointer text-cuarto  text-sm uppercase">
               <Link href={"/collections"} className="relative">
                 Luxoria
                 <span className="absolute left-0 -bottom-1 w-0 h-px bg-cuarto transition-all duration-300 group-hover:w-full"></span>

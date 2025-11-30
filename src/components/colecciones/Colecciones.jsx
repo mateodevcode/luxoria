@@ -47,7 +47,7 @@ const Colecciones = () => {
 
             {/* Contenido */}
             <div className="absolute bottom-4 left-8 flex items-center justify-center text-center text-segundo/70 group-hover:text-cuarto p-4 z-10 gap-2 transition-all duration-300">
-              <h3 className="text-base font-medium">Comprar ahora</h3>
+              <h3 className="text-base font-light">Comprar ahora</h3>
               <MoveRight className="w-4 h-4" />
             </div>
           </div>

@@ -4,7 +4,6 @@ import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { MdKeyboardArrowRight } from "react-icons/md";
 import { navbarImages } from "@/data/imagenes";
 
 export default function Comprar() {
@@ -66,12 +65,12 @@ export default function Comprar() {
     <div className="relative inline-block">
       {/* Enlace */}
       <li
-        className="relative group cursor-pointer font-montserrat dark:text-primero text-segundo font-medium text-sm"
+        className="relative group cursor-pointer text-segundo text-sm"
         onMouseEnter={open}
         onMouseLeave={scheduleClose}
       >
         Comprar
-        <span className="absolute left-0 -bottom-1 w-0 h-px dark:bg-primero bg-segundo transition-all duration-300 group-hover:w-full"></span>
+        <span className="absolute left-0 -bottom-1 w-0 h-px bg-segundo transition-all duration-300 group-hover:w-full"></span>
       </li>
 
       {/* Hover Card */}
@@ -84,7 +83,7 @@ export default function Comprar() {
           onMouseEnter={enterCard}
           onMouseLeave={leaveCard}
           className={`fixed left-0 right-0 ${
-            scrolled ? "top-14" : "top-20"
+            scrolled ? "top-28" : "top-34"
           } h-svh bg-primero dark:bg-segundo shadow-lg border-b z-50 overflow-hidden`}
           style={{
             zIndex: 999,
@@ -93,7 +92,7 @@ export default function Comprar() {
           <div className="flex items-center justify-center gap-8 p-8 h-full">
             <div className="w-2/8 h-full flex flex-col gap-4">
               <div>
-                <h2 className="uppercase text-lg font-semibold font-montserrat text-segundo dark:text-primero pb-2 border-b border-gray-200 dark:border-primero">
+                <h2 className="uppercase text-lg text-segundo dark:text-primero pb-2 border-b border-gray-200 dark:border-primero">
                   underwear
                 </h2>
                 <ul>
@@ -101,7 +100,7 @@ export default function Comprar() {
                     <li key={item.name} className="py-1">
                       <Link
                         href={item.href}
-                        className="text-segundo/70 dark:text-primero font-extralight font-montserrat hover:text-segundo dark:hover:text-primero/70 transition-colors duration-200"
+                        className="text-segundo/70 dark:text-primero font-extralight hover:text-segundo dark:hover:text-primero/70 transition-colors duration-200"
                       >
                         {item.name}
                       </Link>
@@ -110,7 +109,7 @@ export default function Comprar() {
                 </ul>
               </div>
               <div>
-                <h2 className="uppercase text-lg font-semibold font-montserrat text-segundo dark:text-primero pb-2 border-b border-gray-200 dark:border-primero">
+                <h2 className="uppercase text-lg font-semibold text-segundo dark:text-primero pb-2 border-b border-gray-200 dark:border-primero">
                   Accessories
                 </h2>
                 <ul>
@@ -118,7 +117,7 @@ export default function Comprar() {
                     <li key={item.name} className="py-1">
                       <Link
                         href={item.href}
-                        className="text-segundo/70 dark:text-primero font-extralight font-montserrat hover:text-segundo dark:hover:text-primero/70 transition-colors duration-200"
+                        className="text-segundo/70 dark:text-primero font-extralight hover:text-segundo dark:hover:text-primero/70 transition-colors duration-200"
                       >
                         {item.name}
                       </Link>
@@ -130,7 +129,7 @@ export default function Comprar() {
             <div className="w-10/12 h-full flex flex-col items-start">
               <div className="flex items-start justify-between h-1/3 gap-8 w-full">
                 <div className="w-full">
-                  <h2 className="uppercase font-semibold font-montserrat text-segundo dark:text-primero pb-2 border-b border-gray-200 dark:border-primero">
+                  <h2 className="uppercase font-semibold text-segundo dark:text-primero pb-2 border-b border-gray-200 dark:border-primero">
                     underwear
                   </h2>
                   <ul>
@@ -138,7 +137,7 @@ export default function Comprar() {
                       <li key={item.name} className="py-1">
                         <Link
                           href={item.href}
-                          className="text-segundo/70 dark:text-primero font-extralight font-montserrat hover:text-segundo dark:hover:text-primero/70 transition-colors duration-200"
+                          className="text-segundo/70 dark:text-primero font-extralight hover:text-segundo dark:hover:text-primero/70 transition-colors duration-200"
                         >
                           {item.name}
                         </Link>
@@ -147,7 +146,7 @@ export default function Comprar() {
                   </ul>
                 </div>
                 <div className="w-full">
-                  <h2 className="uppercase font-semibold font-montserrat text-segundo dark:text-primero pb-2 border-b border-gray-200 dark:border-primero">
+                  <h2 className="uppercase font-semibold text-segundo dark:text-primero pb-2 border-b border-gray-200 dark:border-primero">
                     Accessories
                   </h2>
                   <ul>
@@ -155,7 +154,7 @@ export default function Comprar() {
                       <li key={item.name} className="py-1">
                         <Link
                           href={item.href}
-                          className="text-segundo/70 dark:text-primero font-extralight font-montserrat hover:text-segundo dark:hover:text-primero/70 transition-colors duration-200"
+                          className="text-segundo/70 dark:text-primero font-extralight hover:text-segundo dark:hover:text-primero/70 transition-colors duration-200"
                         >
                           {item.name}
                         </Link>
@@ -164,7 +163,7 @@ export default function Comprar() {
                   </ul>
                 </div>
                 <div className="w-full">
-                  <h2 className="uppercase font-semibold font-montserrat text-segundo dark:text-primero pb-2 border-b border-gray-200 dark:border-primero">
+                  <h2 className="uppercase font-semibold text-segundo dark:text-primero pb-2 border-b border-gray-200 dark:border-primero">
                     Accessories
                   </h2>
                   <ul>
@@ -172,7 +171,7 @@ export default function Comprar() {
                       <li key={item.name} className="py-1">
                         <Link
                           href={item.href}
-                          className="text-segundo/70 dark:text-primero font-extralight font-montserrat hover:text-segundo dark:hover:text-primero/70 transition-colors duration-200"
+                          className="text-segundo/70 dark:text-primero font-extralight hover:text-segundo dark:hover:text-primero/70 transition-colors duration-200"
                         >
                           {item.name}
                         </Link>
@@ -181,7 +180,7 @@ export default function Comprar() {
                   </ul>
                 </div>
                 <div className="w-full">
-                  <h2 className="uppercase text-lg font-semibold font-montserrat text-segundo dark:text-primero pb-2 border-b border-gray-200 dark:border-primero">
+                  <h2 className="uppercase text-lg font-semibold text-segundo dark:text-primero pb-2 border-b border-gray-200 dark:border-primero">
                     Accessories
                   </h2>
                   <ul>
@@ -189,7 +188,7 @@ export default function Comprar() {
                       <li key={item.name} className="py-1">
                         <Link
                           href={item.href}
-                          className="text-segundo/70 dark:text-primero font-extralight font-montserrat hover:text-segundo dark:hover:text-primero/70 transition-colors duration-200"
+                          className="text-segundo/70 dark:text-primero font-extralight hover:text-segundo dark:hover:text-primero/70 transition-colors duration-200"
                         >
                           {item.name}
                         </Link>
@@ -199,7 +198,7 @@ export default function Comprar() {
                 </div>
               </div>
               <div className="w-11/12 h-2/3 flex flex-col items-start pb-8">
-                <div className="w-full h-full flex items-start justify-center gap-6 pb-8 font-montserrat">
+                <div className="w-full h-full flex items-start justify-center gap-6 pb-8">
                   {navbarImages.shop.imagenesBanner.map((imagen, index) => (
                     <Link
                       key={index}

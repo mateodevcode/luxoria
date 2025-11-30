@@ -115,15 +115,15 @@ export const CollectionCard = ({ item, filtroProductos }) => {
         </div>
 
         {/* Etiqueta Popular */}
-        {item.etiquetas.includes("oro") && (
-          <div className="absolute bottom-4 left-4 text-xs  text-primero opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none bg-segundo  px-2 py-1 rounded">
+        {item.isPopular && (
+          <div className="absolute bottom-4 left-4 text-xs text-primero opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none bg-segundo  px-2 py-1">
             Popular Style 🔥
           </div>
         )}
 
         {/* Discount */}
-        {item.descuento && (
-          <div className="absolute top-4 right-4 text-xs  text-primero opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none bg-segundo  px-2 py-1 rounded">
+        {item.descuento > 0 && (
+          <div className="absolute top-4 right-4 text-xs text-primero opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none bg-segundo  px-2 py-1">
             promo {item.descuento}%
           </div>
         )}
@@ -138,7 +138,7 @@ export const CollectionCard = ({ item, filtroProductos }) => {
               {item.size.map((size) => (
                 <button
                   key={size}
-                  className="text-primero text-sm font-medium transition-transform duration-150 pointer-events-auto hover:bg-primero/10 px-3 py-1"
+                  className="text-primero text-sm transition-transform duration-150 pointer-events-auto hover:bg-cuarto px-3 py-1"
                   onClick={(e) => {
                     e.stopPropagation();
                     console.log("Talla seleccionada:", size);
@@ -154,12 +154,12 @@ export const CollectionCard = ({ item, filtroProductos }) => {
 
       {/* Info bajo la imagen */}
       <div className="dark:text-primero text-segundo h-20">
-        <div className="border border-segundo p-1 rounded-md text-sm text-center font-semibold">
+        <div className="border border-segundo p-1 rounded-md text-sm text-center hover:bg-cuarto/30 cursor-pointer transition-all duration-200">
           Compra ahora y ahorra {item.descuento}%
         </div>
 
         <h3 className=" text-sm md:text-base mt-2">{item.nombre}</h3>
-        <p className=" text-sm font-bold">
+        <p className=" text-sm font-semibold">
           {formatoDinero(item.precio) + " COP"}
         </p>
       </div>

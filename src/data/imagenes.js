@@ -109,6 +109,6 @@ export const heroImagen = {
 };
 
 export const imagesFooter = {
-  src: "/footer/lounge-series.png",
+  src: "/colecciones/nova/nova.png",
   alt: "img de collections",
 };

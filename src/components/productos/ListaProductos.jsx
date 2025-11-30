@@ -125,17 +125,20 @@ const ListaProductos = ({ filtroProductos }) => {
   const productosFiltrados = getProductosFiltrados();
 
   return (
-    <div className="w-full h-full bg-primero dark:bg-segundo p-6 pb-20">
-      <div className="flex items-center justify-center w-full border border-segundo/20 dark:border-primero/20 h-14">
-        <div className="h-full flex items-center justify-center gap-2 border-r border-segundo/20 dark:border-primero/20 px-4 text-segundo dark:text-primero">
-          <span className="font-semibold text-sm">Filtros</span>
+    <div className="w-full h-full bg-primero p-6 pb-20">
+      <div className="flex items-center justify-center w-full border border-segundo/20 h-14">
+        <div className="h-full flex items-center justify-center gap-2 border-r border-segundo/20 px-4 text-segundo">
+          <span className="text-sm">Filtros</span>
           <BsFilter className="text-2xl" />
         </div>
-        {/* <div className="h-full flex items-center justify-center gap-2 border-r border-segundo/20 dark:border-primero/20 px-4 text-segundo dark:text-primero">
-          <span className="font-semibold text-sm">Featured</span>
-          <BsFilterLeft className="text-2xl" />
-        </div> */}
-        <div className="w-full h-full md:flex items-center justify-end gap-2 mx-4 hidden text-segundo dark:text-primero">
+        <div className="h-full flex items-center justify-center gap-2 px-4 text-segundo w-80">
+          <span className="text-sm">
+            Mostrando {productosFiltrados.length} de {productos.length}{" "}
+            productos
+          </span>
+          {/* <BsFilterLeft className="text-2xl" /> */}
+        </div>
+        <div className="w-full h-full md:flex items-center justify-end gap-2 mx-4 hidden text-segundo">
           <button
             className="cursor-pointer select-none active:scale-95 transition-all duration-200"
             onClick={() => setSizeGrid("grid-cols-3")}
@@ -152,13 +155,13 @@ const ListaProductos = ({ filtroProductos }) => {
         {/* Mobile */}
         <div className="w-full h-full flex items-center justify-end gap-2 mx-4 md:hidden">
           <button
-            className="cursor-pointer select-none active:scale-95 transition-all duration-200 text-segundo dark:text-primero hover:text-segundo/70 dark:hover:text-primero/70"
+            className="cursor-pointer select-none active:scale-95 transition-all duration-200 text-segundo hover:text-segundo/70"
             onClick={() => setSizeGrid("grid-cols-1")}
           >
             <FaSquare className="text-xl" />
           </button>
           <button
-            className="cursor-pointer select-none active:scale-95 transition-all duration-200 text-segundo dark:text-primero hover:text-segundo/70 dark:hover:text-primero/70"
+            className="cursor-pointer select-none active:scale-95 transition-all duration-200 text-segundo hover:text-segundo/70"
             onClick={() => setSizeGrid("grid-cols-2")}
           >
             <AiFillAppstore className="text-2xl" />
