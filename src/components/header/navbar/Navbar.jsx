@@ -12,6 +12,7 @@ import { AppContext } from "@/context/AppContext";
 import { Phone } from "lucide-react";
 import Comprar from "../hover-card/Comprar";
 import Esmeraldas from "../hover-card/Esmeraldas";
+import useMensaje from "@/hooks/useMensaje";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -20,6 +21,7 @@ const Navbar = () => {
     setOpenModalMenuHamburguesa,
     setOpenModalSearch,
   } = useContext(AppContext);
+  const { handleMensaje } = useMensaje();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,7 +59,12 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-8 mx-5 md:mx-10 w-10 md:w-48">
-          <button className="flex items-center gap-2">
+          <button
+            className="flex items-center gap-2"
+            onClick={() =>
+              handleMensaje("Hola, estoy interesado en más productos.")
+            }
+          >
             <Phone className="w-3 h-3" />
             <span className="text-sm">+57 304 6005435</span>
           </button>

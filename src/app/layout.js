@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AppProvider } from "@/context/AppContext";
 import { Toaster } from "sonner";
+import BotonWhatsapp from "@/components/botonFlotante/BotonWhatsapp";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,11 +34,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${geistMontserrat.variable} ${geistPoppins.variable} antialiased bg-black`}
+        className={`${geistSans.variable} ${geistMono.variable} ${geistMontserrat.variable} ${geistPoppins.variable} antialiased`}
       >
         <AppProvider>
           {children}
-
+          <BotonWhatsapp />
           <Toaster />
         </AppProvider>
       </body>

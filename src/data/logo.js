@@ -3,12 +3,7 @@ export const logo = {
   alt: "Logo de luxoria",
 };
 
-export const logoDark = {
-  src: "/logo/jaidacks_dark.svg",
-  alt: "Logo of Alaska in dark mode",
-};
-
 export const icon_logo = {
-  src: "/logo/logo-jaidacks.png",
-  alt: "Icon logo of Alaska",
+  src: "/logo/icon.png",
+  alt: "Icon logo de luxoria",
 };

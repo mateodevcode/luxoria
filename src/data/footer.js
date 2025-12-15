@@ -58,23 +58,23 @@ export const footer = {
     {
       name: "Facebook",
       icon: <FaFacebook />,
-      url: "https://www.facebook.com",
-    },
-    {
-      name: "TikTok",
-      icon: <BsTiktok />,
-      url: "https://www.tiktok.com",
+      url: "https://www.facebook.com/luxoriacolombia",
     },
     {
       name: "Instagram",
       icon: <FaInstagram />,
-      url: "https://www.instagram.com",
+      url: "https://www.instagram.com/luxoriacolombia",
     },
     {
-      name: "YouTube",
-      icon: <FaYoutube />,
-      url: "https://www.youtube.com",
+      name: "TikTok",
+      icon: <BsTiktok />,
+      url: "https://www.tiktok.com/@luxoriacolombia",
     },
+    // {
+    //   name: "YouTube",
+    //   icon: <FaYoutube />,
+    //   url: "https://www.youtube.com",
+    // },
   ],
   botonRedesSociales: "Siguenos en redes sociales",
   pieFooter: "© Luxoria 2025 - Desarrollado por Seventwo.",

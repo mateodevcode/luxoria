@@ -14,6 +14,28 @@ export const about_us = {
 };
 
 export const navbarImages = {
+  comprar: {
+    imagenesBanner: [
+      {
+        src: "/hero/hero-5.png",
+        alt: "Coleccion Billance",
+        nombre: "Billance",
+        url: "/colecciones/billance",
+      },
+      {
+        src: "/hero/hero-7.png",
+        alt: "Coleccion Nova",
+        nombre: "Nova",
+        url: "/colecciones/nova",
+      },
+      {
+        src: "/hero/hero-6.png",
+        alt: "Coleccion prisma",
+        nombre: "Prisma",
+        url: "/colecciones/prisma",
+      },
+    ],
+  },
   community: {
     imagenesBanner: [
       {
@@ -25,28 +47,6 @@ export const navbarImages = {
         src: "/hero/hero-3.png",
         alt: "Community Image 2",
         link: "#",
-      },
-    ],
-  },
-  shop: {
-    imagenesBanner: [
-      {
-        src: "/hero/hero-5.png",
-        alt: "Core Collection",
-        nombre: "Core Collection",
-        url: "/collections/core-collection",
-      },
-      {
-        src: "/hero/hero-7.png",
-        alt: "Bold Line",
-        nombre: "Bold Line",
-        url: "/collections/bold-line",
-      },
-      {
-        src: "/hero/hero-6.png",
-        alt: "Lounge Series",
-        nombre: "Lounge Series",
-        url: "/collections/lounge-series",
       },
     ],
   },

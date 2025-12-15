@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { navbarImages } from "@/data/imagenes";
+import { enlacesComprar } from "@/data/data.enlace.comprar";
 
 export default function Comprar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,6 +48,8 @@ export default function Comprar() {
   const leaveCard = () => {
     close();
   };
+
+  const categorias = Object.keys(enlacesComprar);
 
   const enlacesShop = {
     underwear: [
@@ -93,14 +96,14 @@ export default function Comprar() {
             <div className="w-2/8 h-full flex flex-col gap-4">
               <div>
                 <h2 className="uppercase text-lg text-segundo dark:text-primero pb-2 border-b border-gray-200 dark:border-primero">
-                  underwear
+                  {categorias[0]}
                 </h2>
                 <ul>
-                  {enlacesShop.underwear.map((item) => (
-                    <li key={item.name} className="py-1">
+                  {enlacesComprar[categorias[0]].map((item, index) => (
+                    <li key={index} className="py-1">
                       <Link
                         href={item.href}
-                        className="text-segundo/70 dark:text-primero font-extralight hover:text-segundo dark:hover:text-primero/70 transition-colors duration-200"
+                        className="text-segundo/70 dark:text-primero font-extralight hover:text-cuarto dark:hover:text-primero/70 transition-colors duration-200"
                       >
                         {item.name}
                       </Link>
@@ -109,12 +112,12 @@ export default function Comprar() {
                 </ul>
               </div>
               <div>
-                <h2 className="uppercase text-lg font-semibold text-segundo dark:text-primero pb-2 border-b border-gray-200 dark:border-primero">
-                  Accessories
+                <h2 className="uppercase text-lg text-segundo dark:text-primero pb-2 border-b border-gray-200 dark:border-primero">
+                  {categorias[1]}
                 </h2>
                 <ul>
-                  {enlacesShop.accessories.map((item) => (
-                    <li key={item.name} className="py-1">
+                  {enlacesComprar[categorias[1]].map((item, index) => (
+                    <li key={index} className="py-1">
                       <Link
                         href={item.href}
                         className="text-segundo/70 dark:text-primero font-extralight hover:text-segundo dark:hover:text-primero/70 transition-colors duration-200"
@@ -129,12 +132,12 @@ export default function Comprar() {
             <div className="w-10/12 h-full flex flex-col items-start">
               <div className="flex items-start justify-between h-1/3 gap-8 w-full">
                 <div className="w-full">
-                  <h2 className="uppercase font-semibold text-segundo dark:text-primero pb-2 border-b border-gray-200 dark:border-primero">
-                    underwear
+                  <h2 className="uppercase text-segundo dark:text-primero pb-2 border-b border-gray-200 dark:border-primero">
+                    {categorias[2]}
                   </h2>
                   <ul>
-                    {enlacesShop.underwear.map((item) => (
-                      <li key={item.name} className="py-1">
+                    {enlacesComprar[categorias[2]].map((item, index) => (
+                      <li key={index} className="py-1">
                         <Link
                           href={item.href}
                           className="text-segundo/70 dark:text-primero font-extralight hover:text-segundo dark:hover:text-primero/70 transition-colors duration-200"
@@ -146,12 +149,12 @@ export default function Comprar() {
                   </ul>
                 </div>
                 <div className="w-full">
-                  <h2 className="uppercase font-semibold text-segundo dark:text-primero pb-2 border-b border-gray-200 dark:border-primero">
-                    Accessories
+                  <h2 className="uppercase text-segundo dark:text-primero pb-2 border-b border-gray-200 dark:border-primero">
+                    {categorias[3]}
                   </h2>
                   <ul>
-                    {enlacesShop.accessories.map((item) => (
-                      <li key={item.name} className="py-1">
+                    {enlacesComprar[categorias[3]].map((item, index) => (
+                      <li key={index} className="py-1">
                         <Link
                           href={item.href}
                           className="text-segundo/70 dark:text-primero font-extralight hover:text-segundo dark:hover:text-primero/70 transition-colors duration-200"
@@ -163,12 +166,12 @@ export default function Comprar() {
                   </ul>
                 </div>
                 <div className="w-full">
-                  <h2 className="uppercase font-semibold text-segundo dark:text-primero pb-2 border-b border-gray-200 dark:border-primero">
-                    Accessories
+                  <h2 className="uppercase text-segundo dark:text-primero pb-2 border-b border-gray-200 dark:border-primero">
+                    {categorias[4]}
                   </h2>
                   <ul>
-                    {enlacesShop.accessories.map((item) => (
-                      <li key={item.name} className="py-1">
+                    {enlacesComprar[categorias[4]].map((item, index) => (
+                      <li key={index} className="py-1">
                         <Link
                           href={item.href}
                           className="text-segundo/70 dark:text-primero font-extralight hover:text-segundo dark:hover:text-primero/70 transition-colors duration-200"
@@ -180,12 +183,12 @@ export default function Comprar() {
                   </ul>
                 </div>
                 <div className="w-full">
-                  <h2 className="uppercase text-lg font-semibold text-segundo dark:text-primero pb-2 border-b border-gray-200 dark:border-primero">
-                    Accessories
+                  <h2 className="uppercase text-lg text-segundo dark:text-primero pb-2 border-b border-gray-200 dark:border-primero">
+                    {categorias[5]}
                   </h2>
                   <ul>
-                    {enlacesShop.accessories.map((item) => (
-                      <li key={item.name} className="py-1">
+                    {enlacesComprar[categorias[5]].map((item, index) => (
+                      <li key={index} className="py-1">
                         <Link
                           href={item.href}
                           className="text-segundo/70 dark:text-primero font-extralight hover:text-segundo dark:hover:text-primero/70 transition-colors duration-200"
@@ -199,23 +202,20 @@ export default function Comprar() {
               </div>
               <div className="w-11/12 h-2/3 flex flex-col items-start pb-8">
                 <div className="w-full h-full flex items-start justify-center gap-6 pb-8">
-                  {navbarImages.shop.imagenesBanner.map((imagen, index) => (
+                  {navbarImages.comprar.imagenesBanner.map((imagen, index) => (
                     <Link
                       key={index}
                       href={`${imagen.url}`}
-                      className="w-full h-full relative"
+                      className="w-full h-full relative hover:opacity-70 transition-all duration-200"
                     >
                       <Image
                         src={imagen.src}
-                        alt="Community Image"
+                        alt={imagen.alt}
                         width={400}
                         height={400}
                         className="object-cover w-full h-full"
                       />
-                      <h3
-                        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-primero text-4xl font-semibold w-full text-center py-2
-                    "
-                      >
+                      <h3 className="absolute bottom-8 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-segundo text-5xl w-full text-center py-2 font-semibold">
                         {imagen.nombre}
                       </h3>
                     </Link>

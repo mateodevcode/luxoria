@@ -1,6 +1,8 @@
 "use client";
 
 import { AppContext } from "@/context/AppContext";
+import { crearUrlColeccion } from "@/libs/crearUrlColecccion";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useContext } from "react";
 import { MdKeyboardArrowRight } from "react-icons/md";
@@ -13,40 +15,42 @@ const Collections = () => {
   };
 
   return (
-    <div className="bg-whitebase-500 dark:bg-blackbase-500">
+    <div className="bg-primero dark:bg-segundo font-poppins">
       <div className="relative flex flex-col items-center py-8">
-        <h2 className="text-xl font-semibold uppercase font-montserrat text-blackbase-500 dark:text-whitebase-500">
-          our collections
+        <h2 className="text-xl font-semibold uppercase text-segundo dark:text-primero">
+          Nuestras colecciones
         </h2>
-        <div className="w-10 h-[3px] bg-gray-300 mt-2"></div>
+        <div className="w-10 h-[3px] bg-cuarto mt-2"></div>
       </div>
       <div className="w-9/12 mx-auto pb-20 pt-10 gap-6 md:grid grid-cols-2 hidden">
         {colecciones.map((item, index) => (
           <Link
-            href={`${item.url}`}
+            href={`${crearUrlColeccion(item.nombre)}`}
             key={index}
-            className="relative group overflow-hidden bg-amber-300 h-[450px] cursor-pointer"
+            className="relative group overflow-hidden bg-tercero h-[450px] cursor-pointer"
           >
             {/* Imagen con zoom suave */}
-            <img
+            <Image
               src={`${item.imageUrl}`}
               alt={`Collection ${index + 1}`}
+              width={800}
+              height={800}
               className="w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-out"
             />
 
             {/* Nombre centrado (siempre visible) */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <h3 className="text-white text-3xl font-bold font-montserrat z-10 text-center px-4 drop-shadow-lg">
+            {/* <div className="absolute inset-0 flex items-center justify-center">
+              <h3 className="text-primero text-3xl font-bold z-10 text-center px-4 drop-shadow-lg">
                 {item.nombre}
               </h3>
-            </div>
+            </div> */}
 
             {/* Overlay sin fondo, solo para contener las animaciones */}
             <div className="absolute inset-0 flex flex-col justify-between">
               {/* Texto superior - Cantidad de productos */}
               <div className="transform -translate-y-full group-hover:translate-y-0 transition duration-1000 ease-out">
-                <div className="text-white mt-2 mx-2 py-2 px-4 rounded">
-                  <p className="text-white text-lg font-medium font-montserrat text-center drop-shadow-md">
+                <div className="text-primero mt-2 mx-2 py-2 px-4 rounded">
+                  <p className="text-primero text-xl font-medium text-center drop-shadow-md">
                     {numeroProductosColeccion(item._id)} productos
                   </p>
                 </div>
@@ -54,8 +58,8 @@ const Collections = () => {
 
               {/* Texto inferior - Ver colección */}
               <div className="transform translate-y-full group-hover:translate-y-0 transition duration-500 ease-out">
-                <div className="text-white mb-2 mx-2 py-2 px-4 flex items-center justify-center gap-2">
-                  <p className="text-white/80 text-lg font-medium font-montserrat text-center cursor-pointer hover:text-gray-200 transition duration-1000 drop-shadow-md uppercase">
+                <div className="text-primero mb-2 mx-2 py-2 px-4 flex items-center justify-center gap-2">
+                  <p className="text-primero text-xl font-medium text-center cursor-pointer hover:text-gray-200 transition duration-1000 drop-shadow-md uppercase">
                     ver colección
                   </p>
                   <MdKeyboardArrowRight />
@@ -76,15 +80,17 @@ const Collections = () => {
               className="relative group overflow-hidden h-[250px] cursor-pointer flex-shrink-0 w-[300px]"
             >
               {/* Imagen con zoom suave */}
-              <img
+              <Image
                 src={`${item.imageUrl}`}
                 alt={`Collection ${index + 1}`}
+                width={800}
+                height={800}
                 className="w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-out"
               />
 
               {/* Nombre centrado (siempre visible) */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <h3 className="text-white text-3xl font-montserrat z-10 text-center px-4 drop-shadow-lg">
+                <h3 className="text-primero text-3xl z-10 text-center px-4 drop-shadow-lg">
                   {item.nombre}
                 </h3>
               </div>
@@ -93,8 +99,8 @@ const Collections = () => {
               <div className="absolute inset-0 flex flex-col justify-between">
                 {/* Texto superior - Cantidad de productos */}
                 <div className="transform -translate-y-full group-hover:translate-y-0 transition duration-1000 ease-out">
-                  <div className="text-white mt-2 mx-2 py-2 px-4 rounded">
-                    <p className="text-white text-lg font-medium font-montserrat text-center drop-shadow-md">
+                  <div className="text-primero mt-2 mx-2 py-2 px-4 rounded">
+                    <p className="text-primero text-lg font-medium text-center drop-shadow-md">
                       {numeroProductosColeccion(item._id)} productos
                     </p>
                   </div>
@@ -102,8 +108,8 @@ const Collections = () => {
 
                 {/* Texto inferior - Ver colección */}
                 <div className="transform translate-y-full group-hover:translate-y-0 transition duration-500 ease-out">
-                  <div className="text-white mb-2 mx-2 py-2 px-4 flex items-center justify-center gap-2">
-                    <p className="text-white/80 text-lg font-medium font-montserrat text-center cursor-pointer hover:text-gray-200 transition duration-1000 drop-shadow-md uppercase">
+                  <div className="text-primero mb-2 mx-2 py-2 px-4 flex items-center justify-center gap-2">
+                    <p className="text-primero/80 text-lg font-medium text-center cursor-pointer hover:text-gray-200 transition duration-1000 drop-shadow-md uppercase">
                       ver colección
                     </p>
                     <MdKeyboardArrowRight />

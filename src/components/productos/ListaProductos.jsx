@@ -8,6 +8,8 @@ import { CollectionCard } from "./CollectionCard";
 import { FaSquare } from "react-icons/fa6";
 import Link from "next/link";
 import { AppContext } from "@/context/AppContext";
+import Image from "next/image";
+import { promoProductos } from "@/data/data.promo";
 
 const ListaProductos = ({ filtroProductos }) => {
   const { productos } = useContext(AppContext);
@@ -37,68 +39,6 @@ const ListaProductos = ({ filtroProductos }) => {
       window.removeEventListener("resize", handleResize);
     };
   }, [isPromotionVisible]);
-
-  // const collections = [
-  //   {
-  //     id: 1,
-  //     title: "Casa Nova Trunk",
-  //     price: "$160.00",
-  //     priceEUR: "€150.00",
-  //     images: ["/seccion/slider/slider-2.png", "/seccion/slider/slider.png"],
-  //     alt: "Casa Nova Trunk",
-  //     tags: ["Popular", "Summer"],
-  //     discount: "20%",
-  //     url: "/products/collectios-1",
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Urban Explorer Backpack",
-  //     price: "$120.00",
-  //     priceEUR: "€110.00",
-  //     images: [
-  //       "/seccion/slider/slider.png",
-  //       "/seccion/slider/slider-2.png",
-  //       "/seccion/slider/slider.png",
-  //     ],
-  //     alt: "Urban Explorer Backpack",
-  //     tags: ["New", "Trending"],
-  //     discount: "15%",
-  //     url: "/products/collectios-2",
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "Minimalist Tote Bag",
-  //     price: "$90.00",
-  //     priceEUR: "€85.00",
-  //     images: ["/seccion/slider/slider-2.png", "/seccion/slider/slider.png"],
-  //     alt: "Minimalist Tote Bag",
-  //     tags: ["Bestseller"],
-  //     discount: "10%",
-  //     url: "/products/collectios-3",
-  //   },
-  //   {
-  //     id: 4,
-  //     title: "Leather Crossbody",
-  //     price: "$200.00",
-  //     priceEUR: "€190.00",
-  //     images: ["/seccion/slider/slider.png", "/seccion/slider/slider-2.png"],
-  //     alt: "Leather Crossbody",
-  //     tags: ["Luxury"],
-  //     discount: "25%",
-  //     url: "/products/collectios-4",
-  //   },
-  //   {
-  //     id: 5,
-  //     title: "Sport Utility Pack",
-  //     price: "$130.00",
-  //     priceEUR: "€120.00",
-  //     images: ["/seccion/slider/slider-2.png", "/seccion/slider/slider.png"],
-  //     alt: "Sport Utility Pack",
-  //     tags: ["Active"],
-  //     discount: "18%",
-  //     url: "/products/collectios-5",
-  //   },
-  // ];
 
   // Función para filtrar productos según el tab activo
   const getProductosFiltrados = () => {
@@ -173,15 +113,20 @@ const ListaProductos = ({ filtroProductos }) => {
       <div className={`grid gap-6 md:gap-6 mt-8 ${sizeGrid}`}>
         {/* Publicidad condicional - siempre primera */}
         {haveAPromo && (
-          <div className="overflow-hidden flex items-center justify-start h-[600px] flex-col">
+          <Link
+            href={`${promoProductos.url}`}
+            className="overflow-hidden flex items-center justify-start h-[600px] flex-col"
+          >
             <div className="bg-linear-to-br from-gray-200 via-gray-100 to-gray-300 hover:via-gray-300 w-full h-full text-segundo flex items-center justify-center flex-col max-h-[500px] transition-all duration-300">
-              <img
-                src="/colecciones/billance-2.png"
-                alt="promo"
+              <Image
+                src={promoProductos.src}
+                alt={promoProductos.alt}
+                width={1000}
+                height={1000}
                 className="w-full h-full object-cover"
               />
             </div>
-          </div>
+          </Link>
         )}
 
         {/* Colecciones */}
