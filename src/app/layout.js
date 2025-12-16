@@ -3,6 +3,7 @@ import "./globals.css";
 import { AppProvider } from "@/context/AppContext";
 import { Toaster } from "sonner";
 import BotonWhatsapp from "@/components/botonFlotante/BotonWhatsapp";
+import { AuthProvider } from "./Providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,11 +37,13 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${geistMontserrat.variable} ${geistPoppins.variable} antialiased`}
       >
-        <AppProvider>
-          {children}
-          <BotonWhatsapp />
-          <Toaster />
-        </AppProvider>
+        <AuthProvider>
+          <AppProvider>
+            {children}
+            <BotonWhatsapp />
+            <Toaster />
+          </AppProvider>
+        </AuthProvider>
       </body>
     </html>
   );

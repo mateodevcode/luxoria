@@ -1,35 +1,49 @@
+"use client";
+
+import { AppContext } from "@/context/AppContext";
 import { MoveRight } from "lucide-react";
 import Image from "next/image";
-import React from "react";
+import { useRouter } from "next/navigation";
+import React, { useContext } from "react";
 
 const Colecciones = () => {
+  const { anchoPantalla } = useContext(AppContext);
+  const router = useRouter();
   const colecciones = [
     {
       id: 1,
       title: "Colección 1",
       image: "/colecciones/billance-fondo.png",
       description: "Descripción colección 1",
+      url: "/colecciones/billance",
     },
     {
       id: 2,
       title: "Colección 2",
       image: "/colecciones/nova-fondo.png",
       description: "Descripción colección 2",
+      url: "/colecciones/nova",
     },
     {
       id: 3,
       title: "Colección 3",
       image: "/colecciones/prisma-fondo.png",
       description: "Descripción colección 3",
+      url: "/colecciones/prisma",
     },
   ];
 
+  const coleccionesMobile = colecciones.slice(0, 2);
+  const coleccionesShow =
+    anchoPantalla < 1020 ? coleccionesMobile : colecciones;
+
   return (
     <div className="w-full border-b border-segundo">
-      <div className="grid grid-cols-3 gap-0">
-        {colecciones.map((coleccion, index) => (
+      <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-0">
+        {coleccionesShow.map((coleccion, index) => (
           <div
             key={index}
+            onClick={() => router.push(coleccion.url)}
             className={`group relative h-72 overflow-hidden cursor-pointer transition-all duration-300 ${
               index === 1 ? "border-l border-r border-segundo/20" : ""
             }`}

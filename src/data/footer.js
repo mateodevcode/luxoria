@@ -15,11 +15,11 @@ export const footer = {
   enlacesPrincipales: [
     {
       name: "Colecciones",
-      href: "#",
+      href: "/colecciones",
     },
     {
       name: "Contacto",
-      href: "#",
+      href: "/contacto",
     },
     {
       name: "Términos y condiciones",
@@ -27,7 +27,7 @@ export const footer = {
     },
     {
       name: "Política de privacidad",
-      href: "#",
+      href: "/politicas-de-privacidad",
     },
     {
       name: "Envíos y devoluciones",
@@ -47,7 +47,7 @@ export const footer = {
     },
     {
       name: "Soporte",
-      href: "#",
+      href: "/soporte",
     },
   ],
   tituloParrafo: "Acerca de Luxoria",

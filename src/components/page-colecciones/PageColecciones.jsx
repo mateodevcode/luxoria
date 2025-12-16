@@ -1,7 +1,6 @@
 "use client";
 
 import { AppContext } from "@/context/AppContext";
-import { crearUrlColeccion } from "@/libs/crearUrlColecccion";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useContext } from "react";
@@ -25,9 +24,9 @@ const Collections = () => {
       <div className="w-9/12 mx-auto pb-20 pt-10 gap-6 md:grid grid-cols-2 hidden">
         {colecciones.map((item, index) => (
           <Link
-            href={`${crearUrlColeccion(item.nombre)}`}
+            href={`/colecciones/${item.url}`}
             key={index}
-            className="relative group overflow-hidden bg-tercero h-[450px] cursor-pointer"
+            className="relative group overflow-hidden h-[450px] cursor-pointer"
           >
             {/* Imagen con zoom suave */}
             <Image
@@ -75,9 +74,9 @@ const Collections = () => {
         <div className="flex overflow-x-auto scrollbar-hide gap-4 pb-4">
           {colecciones.map((item, index) => (
             <Link
-              href={`${item.url}`}
+              href={`/colecciones/${item.url}`}
               key={index}
-              className="relative group overflow-hidden h-[250px] cursor-pointer flex-shrink-0 w-[300px]"
+              className="relative group overflow-hidden h-[250px] cursor-pointer shrink-0 w-[300px]"
             >
               {/* Imagen con zoom suave */}
               <Image

@@ -17,19 +17,19 @@ export const navbarImages = {
   comprar: {
     imagenesBanner: [
       {
-        src: "/hero/hero-5.png",
+        src: "https://seventwo-media.s3.eu-north-1.amazonaws.com/ecommerce/luxoria/producto_galeria_collar-esmeralda-royale_1764354276792_2.jpg",
         alt: "Coleccion Billance",
         nombre: "Billance",
         url: "/colecciones/billance",
       },
       {
-        src: "/hero/hero-7.png",
+        src: "https://seventwo-media.s3.eu-north-1.amazonaws.com/ecommerce/luxoria/producto_galeria_esmeralda-trenza-real_1764438800389_2.jpg",
         alt: "Coleccion Nova",
         nombre: "Nova",
         url: "/colecciones/nova",
       },
       {
-        src: "/hero/hero-6.png",
+        src: "https://seventwo-media.s3.eu-north-1.amazonaws.com/ecommerce/luxoria/producto_galeria_flor-esmeralda-mini_1764447665440_3.jpg",
         alt: "Coleccion prisma",
         nombre: "Prisma",
         url: "/colecciones/prisma",
@@ -39,14 +39,14 @@ export const navbarImages = {
   community: {
     imagenesBanner: [
       {
-        src: "/hero/hero-2.png",
-        alt: "Community Image 1",
-        link: "#",
+        src: "/hero/coleccion.png",
+        alt: "Coleccion Billance",
+        link: "/colecciones/nova",
       },
       {
         src: "/hero/hero-3.png",
         alt: "Community Image 2",
-        link: "#",
+        link: "/colecciones/prisma",
       },
     ],
   },

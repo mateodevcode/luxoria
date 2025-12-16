@@ -12,9 +12,7 @@ export const AppProvider = ({ children }) => {
     useState(false);
   const [openModalSearch, setOpenModalSearch] = useState(false);
   const [openModalImagen, setOpenModalImagen] = useState(false);
-  const [imageSelected, setImageSelected] = useState(
-    "/section-4/example-1.png"
-  );
+  const [productoSeleccionado, setProductoSeleccionado] = useState(null);
   const [openModalSearchResult, setOpenModalSearchResult] = useState(false);
   const [search, setSearch] = useState("");
   const [openModalReview, setOpenModalReview] = useState(false);
@@ -22,6 +20,23 @@ export const AppProvider = ({ children }) => {
   const [openModalMySize, setOpenModalMySize] = useState(false);
   const [colecciones, setColecciones] = useState([]);
   const [productos, setProductos] = useState([]);
+  const [anchoPantalla, setAnchoPantalla] = useState(0);
+
+  useEffect(() => {
+    // Solo se ejecuta en el cliente
+    const handleResize = () => {
+      setAnchoPantalla(window.innerWidth);
+    };
+
+    // Establecer valor inicial
+    handleResize();
+
+    // Escuchar cambios de tamaño
+    window.addEventListener("resize", handleResize);
+
+    // Limpiar event listener
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const cargarColecciones = async () => {
@@ -67,8 +82,6 @@ export const AppProvider = ({ children }) => {
     cargarProductos();
   }, []);
 
-  console.log(productos);
-
   return (
     <AppContext.Provider
       value={{
@@ -80,8 +93,8 @@ export const AppProvider = ({ children }) => {
         setOpenModalSearch,
         openModalImagen,
         setOpenModalImagen,
-        imageSelected,
-        setImageSelected,
+        productoSeleccionado,
+        setProductoSeleccionado,
         openModalSearchResult,
         setOpenModalSearchResult,
         search,
@@ -96,6 +109,8 @@ export const AppProvider = ({ children }) => {
         setColecciones,
         productos,
         setProductos,
+        anchoPantalla,
+        setAnchoPantalla,
       }}
     >
       {children}

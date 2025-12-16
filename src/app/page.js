@@ -7,6 +7,10 @@ import Beneficios from "@/components/beneficios/Beneficios";
 import Productos from "@/components/productos/Productos";
 import Footer from "@/components/footer/Footer";
 import RedesLateral from "@/components/redes-lateral/RedesLateral";
+import ImageCarousel from "@/components/hero/ImageCarousel";
+import ColeccionesCarousel from "@/components/colecciones/ColeccionesCarousel";
+import CarruselInfinito from "@/components/beneficios/CarruselInfinito";
+import ModalImagen from "@/components/page-productos/productosId/ModalImagen";
 
 export default function Home() {
   return (
@@ -15,9 +19,13 @@ export default function Home() {
       <Navbar />
       <RedesLateral />
       <Hero />
+      <ImageCarousel />
       <Colecciones />
-      <Beneficios />
+      <ColeccionesCarousel />
+      {/* <Beneficios /> */}
+      <CarruselInfinito />
       <Productos />
+      <ModalImagen />
       <Footer />
       <style>{scrollbarStyles.home}</style>
     </div>

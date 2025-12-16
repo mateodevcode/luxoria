@@ -35,12 +35,12 @@ const Navbar = () => {
     <div
       className={`sticky top-0 z-30 transition-colors duration-300 font-poppins font-light ${
         scrolled
-          ? "bg-primero/50 backdrop-blur-sm hover:bg-primero dark:bg-segundo/50 dark:hover:bg-segundo"
-          : "bg-primero dark:bg-segundo"
+          ? "bg-primero/50 backdrop-blur-sm hover:bg-primero"
+          : "bg-primero"
       }`}
     >
       <div className="w-full flex items-center justify-center">
-        <div className="w-auto h-14 mt-2">
+        <Link href={"/"} className="w-auto h-10 md:h-14 mt-2">
           <Image
             src={logo.src}
             alt={logo.alt}
@@ -48,17 +48,17 @@ const Navbar = () => {
             height={500}
             className="w-full h-full object-cover"
           />
-        </div>
+        </Link>
       </div>
       <div className="h-12 w-full flex justify-between items-center border-b border-segundo">
         {/* Botón menú mobile */}
-        <div className="flex items-center mx-5 md:mx-10 md:hidden w-10 md:w-40">
+        <div className="flex items-center mx-3 md:hidden md:w-40 hover:text-cuarto cursor-pointer select-none text-segundo">
           <button onClick={() => setOpenModalMenuHamburguesa(true)}>
-            <HiMenuAlt2 className="text-2xl hover:text-black/70 cursor-pointer select-none dark:hover:text-primero/70 text-segundo dark:text-primero" />
+            <HiMenuAlt2 className="text-2xl" />
           </button>
         </div>
 
-        <div className="flex items-center gap-8 mx-5 md:mx-10 w-10 md:w-48">
+        <div className="hidden lg:flex items-center gap-8 mx-5 md:mx-10 w-10 md:w-48">
           <button
             className="flex items-center gap-2"
             onClick={() =>
@@ -71,20 +71,20 @@ const Navbar = () => {
         </div>
 
         {/* Links */}
-        <nav className="hidden md:flex">
+        <nav className="hidden md:flex mx-3 md:mx-5 lg:mx-10">
           <ul className="flex items-center gap-10">
-            <li className="relative group cursor-pointer dark:text-primero text-segundo text-sm">
-              Inicio
-              <span className="absolute left-0 -bottom-1 w-0 h-px dark:bg-primero bg-segundo transition-all duration-300 group-hover:w-full"></span>
+            <li className="relative group cursor-pointer text-segundo text-sm">
+              <Link href={"/"}>Inicio</Link>
+              <span className="absolute left-0 -bottom-1 w-0 h-px bg-segundo transition-all duration-300 group-hover:w-full"></span>
             </li>
             <Comprar />
-            <li className="relative group cursor-pointer dark:text-primero text-segundo text-sm">
-              Productos
+            <li className="relative group cursor-pointer text-segundo text-sm">
+              <Link href={"/colecciones"}>Colecciones</Link>
               <span className="absolute left-0 -bottom-1 w-0 h-px dark:bg-primero bg-segundo transition-all duration-300 group-hover:w-full"></span>
             </li>
             <Esmeraldas />
-            <li className="relative group cursor-pointer text-cuarto  text-sm uppercase">
-              <Link href={"/collections"} className="relative">
+            <li className="relative group cursor-pointer text-cuarto  text-sm uppercase font-medium">
+              <Link href={"/sobre-nosotros"} className="relative">
                 Luxoria
                 <span className="absolute left-0 -bottom-1 w-0 h-px bg-cuarto transition-all duration-300 group-hover:w-full"></span>
               </Link>
@@ -93,12 +93,12 @@ const Navbar = () => {
         </nav>
 
         {/* Iconos */}
-        <div className="flex items-center gap-8 mx-5 md:mx-10 w-10 md:w-48 justify-end">
+        <div className="flex items-center gap-8 mx-3 md:mx-5 lg:mx-10 md:w-40 justify-end">
           <Link
             href="/profile"
             className="relative group hidden md:flex cursor-pointer select-none"
           >
-            <BsPerson className="text-base relative z-10 text-segundo dark:text-primero hover:text-segundo" />
+            <BsPerson className="text-base relative z-10 text-segundo hover:text-segundo" />
             <span className="absolute inset-0 flex items-center justify-center">
               <span className="hover-circle"></span>
             </span>
@@ -108,7 +108,7 @@ const Navbar = () => {
             className="relative group hidden md:flex cursor-pointer select-none"
             onClick={() => setOpenModalSearch(true)}
           >
-            <LuSearch className="text-base relative z-10 text-segundo dark:text-primero hover:text-segundo" />
+            <LuSearch className="text-base relative z-10 text-segundo hover:text-segundo" />
             <span className="absolute inset-0 flex items-center justify-center">
               <span className="hover-circle"></span>
             </span>
@@ -120,7 +120,7 @@ const Navbar = () => {
             className="relative group cursor-pointer select-none"
             onClick={() => setOpenModalCarritoCompras(true)}
           >
-            <AiOutlineShopping className="text-base relative z-10 text-segundo dark:text-primero hover:text-segundo" />
+            <AiOutlineShopping className="text-2xl md:text-base relative z-10 text-segundo hover:text-cuarto" />
             <span className="absolute inset-0 flex items-center justify-center">
               <span className="hover-circle"></span>
             </span>

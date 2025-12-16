@@ -5,13 +5,17 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import { enlacesShop } from "@/data/enlaces";
+import { enlacesEsmeraldas } from "@/data/enlaces";
 import { navbarImages } from "@/data/imagenes";
+import useMensaje from "@/hooks/useMensaje";
+import { useRouter } from "next/navigation";
 
 export default function Esmeraldas() {
   const [isOpen, setIsOpen] = useState(false);
   const timeoutRef = useRef(null);
   const [scrolled, setScrolled] = useState(false);
+  const { handleMensaje } = useMensaje();
+  const router = useRouter();
 
   useEffect(() => {
     if (isOpen) {
@@ -50,6 +54,16 @@ export default function Esmeraldas() {
     close();
   };
 
+  const handleEnlacesPrincipales = (enlace) => {
+    if (enlace === "/contacto") {
+      handleMensaje("Hola, me gustaria mas información.");
+    } else if (enlace === "/soporte") {
+      handleMensaje("Necesito ayuda.");
+    } else {
+      router.push(enlace);
+    }
+  };
+
   return (
     <div className="relative inline-block">
       {/* Enlace */}
@@ -58,7 +72,7 @@ export default function Esmeraldas() {
         onMouseEnter={open}
         onMouseLeave={scheduleClose}
       >
-        Esmeraldas
+        <Link href={"/esmeraldas"}>Esmeraldas</Link>
         <span className="absolute left-0 -bottom-1 w-0 h-px bg-segundo transition-all duration-300 group-hover:w-full"></span>
       </li>
 
@@ -82,21 +96,21 @@ export default function Esmeraldas() {
             <div className="w-2/8 h-full flex flex-col gap-4">
               <div>
                 <ul>
-                  {enlacesShop.underwear.map((item, index) => (
+                  {enlacesEsmeraldas.enlaces.map((item, index) => (
                     <li key={index} className="py-1">
-                      <Link
-                        href={item.href}
-                        className="text-segundo dark:text-primero font-montserrat dark:hover:text-gray-400 transition-colors duration-200 text-2xl font-normal hover:text-segundo/70"
+                      <button
+                        onClick={() => handleEnlacesPrincipales(item.href)}
+                        className="text-segundo transition-colors duration-200 text-2xl font-normal hover:text-cuarto"
                       >
                         {item.name}
-                      </Link>
+                      </button>
                     </li>
                   ))}
                 </ul>
               </div>
             </div>
             <div className="w-10/12 h-full flex flex-col items-start">
-              <div className="w-full h-full flex items-start justify-center gap-8 pb-8 font-montserrat">
+              <div className="w-full h-full flex items-start justify-center gap-8 pb-8">
                 {navbarImages.community.imagenesBanner.map((image, index) => (
                   <div key={index} className="w-full h-full">
                     <Image
@@ -108,9 +122,9 @@ export default function Esmeraldas() {
                     />
                     <Link
                       href={image.link}
-                      className="flex items-center gap-2 py-3 uppercase text-lg text-segundo dark:text-primero dark:hover:text-primero/80 active:scale-95 transition-transform duration-200"
+                      className="flex items-center gap-2 py-3 uppercase text-lg text-segundo hover:text-cuarto active:scale-95 transition-transform duration-200"
                     >
-                      <span>learn more</span>
+                      <span>ver más</span>
                       <MdKeyboardArrowRight />
                     </Link>
                   </div>

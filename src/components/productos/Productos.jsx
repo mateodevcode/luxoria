@@ -15,7 +15,7 @@ const Productos = () => {
 
   return (
     <div className="font-poppins flex flex-col gap-5 items-center py-10">
-      <h2 className="text-5xl font-light">Joyeria Luxoria</h2>
+      <h2 className="text-3xl md:text-5xl font-light">Joyeria Luxoria</h2>
       <div className="flex w-full justify-center border-b border-t border-segundo/20">
         <ul className="flex gap-12">
           {tabs.map((tab) => (
@@ -25,7 +25,7 @@ const Productos = () => {
               className={`cursor-pointer select-none relative transition-colors duration-300 py-4 ${
                 enlaceSeleccionado === tab.id
                   ? "text-segundo"
-                  : "text-cuarto/50 hover:text-cuarto/70"
+                  : "text-cuarto hover:text-cuarto/70"
               }`}
             >
               {tab.label}

@@ -1,8 +1,8 @@
-export const enlacesShop = {
-  underwear: [
-    { name: "About us", href: "/pages/about-us" },
-    { name: "Sustetability", href: "#" },
-    { name: "Collaborate with us", href: "/pages/collaborators" },
-    { name: "Contact", href: "/pages/contact-us" },
+export const enlacesEsmeraldas = {
+  enlaces: [
+    { name: "Acerca de nosotros", href: "/sobre-nosotros" },
+    { name: "Sostenibilidad", href: "#" },
+    { name: "Colabora con nosotros", href: "/colabora-con-nosotros" },
+    { name: "Contacto", href: "/contacto" },
   ],
 };

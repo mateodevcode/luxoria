@@ -79,7 +79,7 @@ export const CollectionCard = ({ item, filtroProductos }) => {
           alt={item.nombre || "Imagenes de productos"}
           width={400}
           height={500}
-          className="w-auto md:w-auto h-64 md:h-[500px] object-cover"
+          className="w-auto md:w-auto h-full md:h-[500px] object-cover"
         />
 
         {/* BARRAS DE CARGA */}
@@ -153,8 +153,8 @@ export const CollectionCard = ({ item, filtroProductos }) => {
       </div>
 
       {/* Info bajo la imagen */}
-      <div className="dark:text-primero text-segundo h-20">
-        <div className="border border-segundo p-1 rounded-md text-sm text-center hover:bg-cuarto/30 cursor-pointer transition-all duration-200">
+      <div className="text-segundo h-20 px-4">
+        <div className="border border-segundo p-2 rounded-md text-sm text-center hover:bg-cuarto/30 cursor-pointer transition-all duration-200 w-10/12 mx-auto">
           Compra ahora y ahorra {item.descuento}%
         </div>
 

@@ -20,7 +20,7 @@ const BotonWhatsapp = () => {
     <>
       {/* Botón flotante de WhatsApp */}
       <div
-        className="fixed z-40 right-2 md:right-10 bottom-16 md:bottom-8 rounded-full cursor-pointer hover:text-primero/80 text-primero dark:text-primero dark:shadow-primero/10 shadow-segundo/10 hover:opacity-70 transition-all duration-300 hover:scale-105"
+        className="fixed z-40 right-2 md:right-10 bottom-10 md:bottom-8 rounded-full cursor-pointer hover:text-primero/80 text-primero dark:text-primero dark:shadow-primero/10 shadow-segundo/10 hover:opacity-70 transition-all duration-300 hover:scale-105"
         onClick={() => {
           setModalOpenBotonFlotante(!modalOpenBotonFlotante);
           setShow(false);
@@ -41,7 +41,7 @@ const BotonWhatsapp = () => {
             onClick={() => setModalOpenBotonFlotante(false)}
           >
             <motion.div
-              className="absolute bottom-20 right-24 z-40 w-72 h-80 bg-segundo/10 rounded-md border-0 shadow-lg overflow-hidden font-poppins"
+              className="absolute bottom-16 md:bottom-24 right-16 z-40 w-72 h-80 bg-segundo/10 rounded-md border-0 shadow-lg overflow-hidden font-poppins"
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0 }}

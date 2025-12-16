@@ -5,9 +5,9 @@ const BannerTop = () => {
   return (
     <Link
       href="/"
-      className="banner-top w-full bg-linear-to-r from-cuarto from-10% to-segundo opacity-85 text-primero text-center h-7 flex items-center justify-center font-sans"
+      className="banner-top w-full bg-linear-to-r from-cuarto from-10% to-segundo opacity-85 text-primero text-center h-7 flex items-center justify-center font-poppins"
     >
-      <span className="text-[10px] font-light uppercase font-poppins">
+      <span className="text-[10px] font-light uppercase">
         Envíos a todo el país - rápidos, seguros y sin complicaciones.
       </span>
     </Link>

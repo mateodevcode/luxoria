@@ -5,8 +5,23 @@ import React from "react";
 import { FaRegHeart } from "react-icons/fa";
 import Link from "next/link";
 import { footer } from "@/data/footer";
+import useMensaje from "@/hooks/useMensaje";
+import { useRouter } from "next/navigation";
 
 const Footer = () => {
+  const { handleMensaje } = useMensaje();
+  const router = useRouter();
+
+  const handleEnlacesPrincipales = (enlace) => {
+    if (enlace === "/contacto") {
+      handleMensaje("Hola, me gustaria mas información.");
+    } else if (enlace === "/soporte") {
+      handleMensaje("Necesito ayuda.");
+    } else {
+      router.push(enlace);
+    }
+  };
+
   return (
     <div className="h-full w-full bg-gray-100 p-6 font-poppins font-light">
       <div>
@@ -41,13 +56,13 @@ const Footer = () => {
             <div className="flex flex-col gap-2 mt-4">
               {footer.enlacesPrincipales.map((enlace, index) => (
                 <div className="relative group inline-block" key={index}>
-                  <Link
-                    href={enlace.href}
+                  <button
+                    onClick={() => handleEnlacesPrincipales(enlace.href)}
                     className="text-segundo/80 hover:text-segundo transition-colors duration-300 text-base md:text-lg  relative"
                   >
                     {enlace.name}
                     <span className="absolute left-0 bottom-0 w-0 h-px bg-current transition-all duration-300 group-hover:w-full"></span>
-                  </Link>
+                  </button>
                 </div>
               ))}
             </div>
@@ -64,7 +79,7 @@ const Footer = () => {
       </div>
       <div className="h-px bg-segundo/20" />
       <div className="flex flex-col justify-between pt-5">
-        <div className="flex md:flex-row flex-col items-start md:items-center justify-between pb-6">
+        <div className="flex md:flex-row flex-col items-start md:items-center justify-between pb-6 md:gap-0 gap-4">
           <p className="md:text-4xl text-2xl text-segundo/80 font-bold">
             {footer.frase}
           </p>
@@ -87,7 +102,7 @@ const Footer = () => {
             </button>
           </div>
         </div>
-        <div className="flex md:flex-row flex-col md:items-center justify-between">
+        <div className="flex md:flex-row flex-col md:items-center justify-between md:gap-0 gap-4">
           <div className="flex flex-col gap-2">
             <p className=" text-segundo">{footer.pieFooter}</p>
           </div>

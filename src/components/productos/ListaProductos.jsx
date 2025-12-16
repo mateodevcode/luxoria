@@ -12,14 +12,14 @@ import Image from "next/image";
 import { promoProductos } from "@/data/data.promo";
 
 const ListaProductos = ({ filtroProductos }) => {
-  const { productos } = useContext(AppContext);
+  const { productos, anchoPantalla } = useContext(AppContext);
   const [sizeGrid, setSizeGrid] = useState("grid-cols-4");
   const [isPromotionVisible, setIsPromotionVisible] = useState(true);
   const [haveAPromo, setHaveAPromo] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 768) {
+      if (anchoPantalla < 768) {
         // Mobil: sm, md
         setSizeGrid("grid-cols-1");
       } else {
@@ -38,7 +38,7 @@ const ListaProductos = ({ filtroProductos }) => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [isPromotionVisible]);
+  }, [isPromotionVisible, anchoPantalla]);
 
   // Función para filtrar productos según el tab activo
   const getProductosFiltrados = () => {
@@ -71,8 +71,8 @@ const ListaProductos = ({ filtroProductos }) => {
           <span className="text-sm">Filtros</span>
           <BsFilter className="text-2xl" />
         </div>
-        <div className="h-full flex items-center justify-center gap-2 px-4 text-segundo w-80">
-          <span className="text-sm">
+        <div className="h-full flex items-center justify-center gap-2 px-4 text-segundo w-full md:w-80">
+          <span className="text-xs md:text-sm">
             Mostrando {productosFiltrados.length} de {productos.length}{" "}
             productos
           </span>
