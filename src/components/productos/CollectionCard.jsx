@@ -2,6 +2,7 @@
 
 import { formatoDinero } from "@/libs/formatoDinero";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 export const CollectionCard = ({ item, filtroProductos }) => {
@@ -10,6 +11,7 @@ export const CollectionCard = ({ item, filtroProductos }) => {
   const [progress, setProgress] = useState(0);
   const intervalRef = useRef(null);
   const [seenImages, setSeenImages] = useState(new Set());
+  const router = useRouter();
 
   const duration = 3000; // 5 segundos
 
@@ -80,6 +82,7 @@ export const CollectionCard = ({ item, filtroProductos }) => {
           width={400}
           height={500}
           className="w-auto md:w-auto h-full md:h-[500px] object-cover"
+          onClick={() => router.push(`/productos/${item.url}`)}
         />
 
         {/* BARRAS DE CARGA */}

@@ -4,13 +4,13 @@ import React, { useContext } from "react";
 import { CiRuler } from "react-icons/ci";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { RiArrowDropDownFill } from "react-icons/ri";
-import { ProductsAccordeonDetails } from "./ProductsAccordeonDetails";
 import { AppContext } from "@/context/AppContext";
 import Image from "next/image";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { formatoDinero } from "@/libs/formatoDinero";
 import Link from "next/link";
 import { Loader } from "@/components/loading/Loader";
+import { productosGancho } from "@/data/data.productos.gancho";
 
 const ProductoDetalle = () => {
   const {
@@ -21,6 +21,7 @@ const ProductoDetalle = () => {
     productos,
     colecciones,
   } = useContext(AppContext);
+  const router = useRouter();
   const params = useParams();
 
   const producto = productos.find((producto) => producto.url === params.id);
@@ -28,6 +29,8 @@ const ProductoDetalle = () => {
   const coleccion = colecciones.find(
     (coleccion) => coleccion._id === producto?.coleccionId
   );
+
+  console.log(producto);
 
   if (!producto) {
     return (
@@ -41,7 +44,7 @@ const ProductoDetalle = () => {
     <div className="h-full font-poppins">
       <div className="grid w-full md:w-9/12 mx-auto grid-cols-1 md:grid-cols-[60%_40%] h-full">
         {/* Sección izquierda */}
-        <div className="text-whitebase-500 p-6">
+        <div className="text-primero p-6">
           <div className="mx-auto flex items-center text-sm font-light text-segundo">
             <Link href={`/colecciones`} className="hover:text-cuarto">
               colecciones
@@ -114,23 +117,29 @@ const ProductoDetalle = () => {
                 </p>
               </div>
               <div className="text-xs bg-segundo/5 font-semibold p-2 flex flex-col justify-center items-center">
-                <p className="">VAT is included on all orders up to €150</p>
-                <p>For orders over €150, VAT may apply on delivery</p>
+                <p className="">
+                  Todos nuestros productos estan garantizados y cumplen con las
+                  normas de calidad.
+                </p>
               </div>
             </div>
 
             {/* Promo Section */}
-            <div className="mb-6 bg-segundo/5 p-2 rounded border border-segundo flex items-center justify-center">
-              <p className="text-xs font-bold flex items-center gap-1">
-                SAVE UP TO 25% WITH BUNDLES.{" "}
-                <span className="font-medium">Learn more</span>
-                <RiArrowDropDownFill className="text-xl" />
-              </p>
-            </div>
+            {producto?.descuento === 0 && (
+              <div className="mb-6 bg-segundo/5 p-2 rounded border border-segundo flex items-center justify-center">
+                <div className="text-xs font-bold flex items-center gap-4">
+                  <span>AHORRA {producto.descuento}% CON BUNDLES</span>{" "}
+                  <div className="flex items-center gap-2">
+                    <span className="font-medium">Ver más</span>
+                    <RiArrowDropDownFill className="text-xl" />
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Color Section */}
             <div className="mb-6">
-              <div className=" mb-2 flex items-center gap-1">
+              {/* <div className=" mb-2 flex items-center gap-1">
                 <h3 className="font-semibold">COLOUR | </h3>
                 <span>Blush</span>
               </div>
@@ -139,7 +148,7 @@ const ProductoDetalle = () => {
                 <div className="w-6 h-6 rounded-full bg-segundo border border-segundo/20"></div>
                 <div className="w-6 h-6 rounded-full bg-sky-300 border border-segundo/20"></div>
                 <div className="w-6 h-6 rounded-full bg-amber-200 border border-segundo/20"></div>
-              </div>
+              </div> */}
               <div
                 className="text-sm font-semibold bg-segundo/5 w-36 flex items-center justify-center gap-1 p-1 rounded cursor-pointer mt-4"
                 onClick={() => {
@@ -147,18 +156,18 @@ const ProductoDetalle = () => {
                 }}
               >
                 <CiRuler />
-                <span>What's my size?</span>
+                <span>Cual es mi talla?</span>
               </div>
             </div>
 
             {/* Size Selection */}
             <div className="mb-6">
-              <h3 className="font-semibold mb-3">SELECT SIZE</h3>
+              <h3 className="font-semibold mb-3">TALLAS</h3>
               <div className="grid grid-cols-6 gap-2 mb-3">
                 {producto?.size.map((size) => (
                   <button
                     key={size}
-                    className="border border-segundo py-2 text-sm rounded font-bold hover:border-gray-500 transition-colors"
+                    className="border border-segundo py-2 text-sm rounded font-bold hover:border-cuarto hover:bg-cuarto/50 transition-colors"
                   >
                     {size}
                   </button>
@@ -167,24 +176,24 @@ const ProductoDetalle = () => {
 
               {/* Size Guide */}
               <div className="grid grid-cols-3 text-center text-xs text-gray-600 mb-4 border border-segundo rounded mt-5">
-                <span className="py-1">RUNS SMALL</span>
-                <span className="bg-segundo text-whitebase-500 py-1 font-semibold">
-                  TRUE TO SIZE
+                <span className="py-1">SM</span>
+                <span className="bg-segundo text-primero py-1 font-semibold">
+                  TALLA CORRECTA
                 </span>
-                <span className="py-1">RUNS LARGE</span>
+                <span className="py-1">XL</span>
               </div>
 
               {/* Model Info */}
               <div className="text-xs p-1 rounded flex items-center gap-1 bg-segundo/5">
                 <img
-                  src="/collections/details/detalle_person.webp"
+                  src={producto?.imageUrl}
                   alt="person"
                   className="w-10 h-10"
                 />
                 <p className="text-segundo/70">
-                  <span className="font-semibold">Matt wears size M.</span> He
-                  is 6'2" (189 cm) tall, with a 35.5" (90.2 cm) waist and hips
-                  measuring 40" (101.6 cm)
+                  <span className="font-semibold">Marcos usa talla M.</span> el
+                  tiene 189 cm de altura, 90.2 cm de cintura y 101.6 cm de
+                  cadera
                 </p>
               </div>
             </div>
@@ -192,17 +201,17 @@ const ProductoDetalle = () => {
             {/* Add to Bag */}
             <div className="">
               <button className="w-full bg-black text-white py-3 font-semibold hover:bg-gray-800 transition-colors">
-                ADD TO BAG - €32,00
+                Agregar al carrito - {formatoDinero(producto.precio)}
               </button>
               <p className="text-xs mt-4 text-segundo/80 font-semibold">
-                This product cannot be returned or exchanged
+                Este producto esta totalmente garantizado y cumple con las
+                normas de calidad.
               </p>
             </div>
           </div>
 
           {/* Seccion 2 */}
-          <div className="max-w-2xl mx-auto p-6 font-sans">
-            {/* Features Grid */}
+          {/* <div className="max-w-2xl mx-auto p-6 font-sans">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-8 border-b border-segundo/10 pb-2">
               <img
                 src="/collections/details/4.webp"
@@ -226,17 +235,47 @@ const ProductoDetalle = () => {
               />
             </div>
             <ProductsAccordeonDetails />
-          </div>
+          </div> */}
 
           {/* seccion 3 */}
           <div className="max-w-2xl mx-auto p-6">
             <div className="max-w-2xl mx-auto p-6 font-sans border border-segundo/10 relative h-72 mt-4">
-              <h2 className="text-xl text-center absolute -top-4 bg-whitebase-500 px-4 mx-auto left-0 right-0 w-max">
-                Complete the fit
+              <h2 className="text-xl text-center absolute -top-4 bg-primero px-4 mx-auto left-0 right-0 w-max">
+                Anillos de compromiso
               </h2>
 
-              <div className="flex flex-col h-full gap-6">
-                <div className="h-1/2 w-full flex items-center gap-4">
+              <div className="flex flex-col h-full gap-2">
+                {productosGancho.map((product, index) => {
+                  const productoFind = productos.find((p) => p._id === product);
+
+                  return (
+                    <div key={index} className="h-1/2 w-full flex items-center">
+                      <Image
+                        src={productoFind.imageUrl}
+                        alt={productoFind.nombre}
+                        className="h-full object-cover"
+                        width={200}
+                        height={200}
+                      />
+                      <div>
+                        <h3 className="text-sm">{productoFind.nombre}</h3>
+                        <p className="font-bold text-sm mt-2">
+                          {formatoDinero(productoFind.precio)}
+                        </p>
+                        <button
+                          onClick={() =>
+                            router.push(`/productos/${productoFind.url}`)
+                          }
+                          className="uppercase font-semibold bg-segundo/5 w-36 flex items-center justify-center gap-1 cursor-pointer mt-2 p-3 text-sm hover:bg-segundo hover:text-white transition-colors"
+                        >
+                          Comprar
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
+
+                {/* <div className="h-1/2 w-full flex items-center gap-4">
                   <img
                     src="/collections/complete-fit/img-1.png"
                     alt="imagen fit 1"
@@ -263,7 +302,7 @@ const ProductoDetalle = () => {
                       quick view
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

@@ -1,11 +1,9 @@
 "use client";
 
 import { CollectionCard } from "@/components/productos/CollectionCard";
-import { AppContext } from "@/context/AppContext";
-import { useState, useRef, useEffect, useCallback, useContext } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 
 export const SliderProducts = ({ productos = [], titulo = "" }) => {
-  // const { productos } = useContext(AppContext);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
@@ -76,8 +74,8 @@ export const SliderProducts = ({ productos = [], titulo = "" }) => {
     if (!touchStart || !touchEnd) return;
 
     const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > 50;
-    const isRightSwipe = distance < -50;
+    const isLeftSwipe = distance > 80;
+    const isRightSwipe = distance < -80;
 
     if (isLeftSwipe) nextSlide();
     if (isRightSwipe) prevSlide();

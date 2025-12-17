@@ -103,7 +103,7 @@ const ColeccionId = () => {
                 className="flex items-center gap-2 animate-fadeIn"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <CiCircleCheck className="text-2xl text-primario flex-shrink-0" />
+                <CiCircleCheck className="text-2xl text-primario shrink-0" />
                 <span className="text-xs md:text-lg leading-relaxed">
                   {frase}
                 </span>

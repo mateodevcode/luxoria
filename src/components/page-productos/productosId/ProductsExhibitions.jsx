@@ -2,7 +2,7 @@ import React from "react";
 
 const ProductsExhibitions = () => {
   return (
-    <div className="font-montserrat">
+    <div className="font-poppins">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-96">
         <div className="flex flex-col justify-end items-end">
           <p className="font-semibold text-xl">Barely There. Big Impact.</p>
@@ -15,14 +15,14 @@ const ProductsExhibitions = () => {
           </p>
         </div>
         <img
-          src="/collections/exhibitions/img-1.webp"
+          src="/productos/exhibicions/image-1.png"
           alt="imagen de prueba"
           className="rounded h-96 w-auto object-cover"
         />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-96">
         <img
-          src="/collections/exhibitions/img-2.webp"
+          src="/productos/exhibicions/image-2.png"
           alt="imagen de prueba"
           className="rounded h-96 w-auto object-cover"
         />

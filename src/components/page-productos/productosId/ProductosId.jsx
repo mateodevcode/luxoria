@@ -41,23 +41,26 @@ const ProductosId = () => {
   }, []);
 
   return (
-    <div className="bg-primero dark:bg-segundo">
+    <div className="bg-primero dark:bg-segundo pb-20">
       <ProductoDetalle />
 
-      {/* <div className="w-11/12 md:w-9/12 mx-auto py-10">
-        <SliderProducts productos={productos} titulo={"You might also like"} />
-      </div> */}
-
-      {/* <div className="w-8/12 mx-auto py-10">
-        <ProductsExhibitions />
-      </div> */}
-
-      {/* <div className="w-9/12 mx-auto py-10">
+      <div className="w-11/12 md:w-9/12 mx-auto py-10">
         <SliderProducts
           productos={productos}
-          titulo={"Products you recently viewed"}
+          titulo={"También te puede gustar"}
         />
-      </div> */}
+      </div>
+
+      <div className="w-8/12 mx-auto py-10">
+        <ProductsExhibitions />
+      </div>
+
+      <div className="w-9/12 mx-auto py-10">
+        <SliderProducts
+          productos={productos}
+          titulo={"Productos recientemente vistos"}
+        />
+      </div>
 
       {showFooterNav && (
         <nav className="fixed bottom-0 left-0 w-full bg-gray-50 text-segundo border-t border-segundo flex justify-around items-center py-1 shadow-lg transition-all duration-500 animate-fadeIn font-poppins z-20 gap-4">
