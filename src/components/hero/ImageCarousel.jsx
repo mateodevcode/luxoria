@@ -83,7 +83,7 @@ const ImageCarousel = () => {
           className="absolute inset-0 w-full h-full"
         >
           <div
-            className="absolute inset-0 w-full h-full bg-cover bg-center"
+            className="absolute inset-0 w-full h-full bg-cover bg-center bg-primero"
             style={{
               backgroundImage: `url(${slides[currentSlide].image})`,
             }}

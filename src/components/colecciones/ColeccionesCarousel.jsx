@@ -56,7 +56,7 @@ const ColeccionesCarousel = () => {
   }, [isAutoPlaying]);
 
   return (
-    <div className="relative w-full h-[35svh] overflow-hidden flex md:hidden">
+    <div className="relative w-full h-[35svh] overflow-hidden flex md:hidden ">
       <AnimatePresence initial={false} custom={direction} mode="sync">
         <motion.div
           key={currentSlide}
@@ -72,7 +72,7 @@ const ColeccionesCarousel = () => {
           className="absolute inset-0 w-full h-full"
         >
           <div
-            className="absolute inset-0 w-full h-full bg-cover bg-center"
+            className="absolute inset-0 w-full h-full bg-cover bg-center bg-primero"
             style={{
               backgroundImage: `url(${slides[currentSlide].image})`,
             }}

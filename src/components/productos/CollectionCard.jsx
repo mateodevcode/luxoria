@@ -132,7 +132,7 @@ export const CollectionCard = ({ item, filtroProductos }) => {
         )}
 
         {/* Quick Add */}
-        <div className="absolute bottom-0 p-2 bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-full">
+        <div className="absolute bottom-0 p-2 bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-full bg-primero">
           <div className="w-full h-10 bg-segundo flex items-center justify-center cursor-pointer select-none active:scale-95 duration-75 relative group/btn">
             <span className=" text-primero transition-opacity duration-200 group-hover/btn:opacity-0">
               Añadir al carrito

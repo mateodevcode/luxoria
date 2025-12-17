@@ -76,7 +76,7 @@ export const footer = {
     //   url: "https://www.youtube.com",
     // },
   ],
-  botonRedesSociales: "Siguenos en redes sociales",
+  botonRedesSociales: "Siguenos en redes",
   pieFooter: "© Luxoria 2025 - Desarrollado por Seventwo.",
   mediosPago: [
     {

@@ -14,7 +14,7 @@ const Productos = () => {
   ];
 
   return (
-    <div className="font-poppins flex flex-col gap-5 items-center py-10">
+    <div className="font-poppins flex flex-col gap-5 items-center py-10 bg-primero">
       <h2 className="text-3xl md:text-5xl font-light">Joyeria Luxoria</h2>
       <div className="flex w-full justify-center border-b border-t border-segundo/20">
         <ul className="flex gap-12">

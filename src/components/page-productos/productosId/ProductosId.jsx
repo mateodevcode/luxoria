@@ -41,7 +41,7 @@ const ProductosId = () => {
   }, []);
 
   return (
-    <div className="bg-primero dark:bg-segundo pb-20">
+    <div className="bg-primero pb-20">
       <ProductoDetalle />
 
       <div className="w-11/12 md:w-9/12 mx-auto py-10">
