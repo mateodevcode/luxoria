@@ -11,12 +11,17 @@ import ColeccionesCarousel from "@/components/colecciones/ColeccionesCarousel";
 import CarruselInfinito from "@/components/beneficios/CarruselInfinito";
 import ModalImagen from "@/components/page-productos/productosId/ModalImagen";
 import ModalCarritoCompras from "@/components/modales/ModalCarritoCompras";
+import CarruselNav from "@/components/header/carrusel/CarruselNav";
+import Reviews from "@/components/reviews/Reviews";
+import ModalReview from "@/components/reviews/ModalReviews";
+import CarruselBanner from "@/components/carrusel-banner/CarruselBanner";
 
 export default function Home() {
   return (
     <div className="relative font-poppins">
       <BannerTop />
       <Navbar />
+      <CarruselNav />
       <RedesLateral />
       <Hero />
       <ImageCarousel />
@@ -26,6 +31,9 @@ export default function Home() {
       <Productos />
       <ModalImagen />
       <ModalCarritoCompras />
+      <CarruselBanner />
+      <ModalReview />
+      <Reviews />
       <Footer />
       <style>{scrollbarStyles.home}</style>
     </div>

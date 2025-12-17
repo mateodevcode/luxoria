@@ -39,7 +39,7 @@ const Navbar = () => {
           : "bg-primero"
       }`}
     >
-      <div className="w-full flex items-center justify-center">
+      <div className="w-full items-center justify-center hidden md:flex">
         <Link href={"/"} className="w-auto h-10 md:h-14 mt-2">
           <Image
             src={logo.src}
@@ -50,12 +50,25 @@ const Navbar = () => {
           />
         </Link>
       </div>
+
       <div className="h-12 w-full flex justify-between items-center border-b border-segundo">
         {/* Botón menú mobile */}
         <div className="flex items-center mx-3 md:hidden md:w-40 hover:text-cuarto cursor-pointer select-none text-segundo">
           <button onClick={() => setOpenModalMenuHamburguesa(true)}>
             <HiMenuAlt2 className="text-2xl" />
           </button>
+        </div>
+
+        <div className="w-full flex items-center justify-center md:hidden">
+          <Link href={"/"} className="w-auto h-8">
+            <Image
+              src={logo.src}
+              alt={logo.alt}
+              width={500}
+              height={500}
+              className="w-full h-full object-cover"
+            />
+          </Link>
         </div>
 
         <div className="hidden lg:flex items-center gap-8 mx-5 md:mx-10 w-10 md:w-48">

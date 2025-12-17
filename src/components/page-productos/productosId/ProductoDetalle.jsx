@@ -23,14 +23,11 @@ const ProductoDetalle = () => {
   } = useContext(AppContext);
   const router = useRouter();
   const params = useParams();
-
   const producto = productos.find((producto) => producto.url === params.id);
 
   const coleccion = colecciones.find(
     (coleccion) => coleccion._id === producto?.coleccionId
   );
-
-  console.log(producto);
 
   if (!producto) {
     return (
@@ -185,9 +182,11 @@ const ProductoDetalle = () => {
 
               {/* Model Info */}
               <div className="text-xs p-1 rounded flex items-center gap-1 bg-segundo/5">
-                <img
+                <Image
                   src={producto?.imageUrl}
                   alt="person"
+                  width={100}
+                  height={100}
                   className="w-10 h-10"
                 />
                 <p className="text-segundo/70">
@@ -200,7 +199,7 @@ const ProductoDetalle = () => {
 
             {/* Add to Bag */}
             <div className="">
-              <button className="w-full bg-black text-white py-3 font-semibold hover:bg-gray-800 transition-colors">
+              <button className="w-full bg-segundo text-primero py-3 font-semibold hover:bg-segundo/80 transition-colors">
                 Agregar al carrito - {formatoDinero(producto.precio)}
               </button>
               <p className="text-xs mt-4 text-segundo/80 font-semibold">
@@ -266,7 +265,7 @@ const ProductoDetalle = () => {
                           onClick={() =>
                             router.push(`/productos/${productoFind.url}`)
                           }
-                          className="uppercase font-semibold bg-segundo/5 w-36 flex items-center justify-center gap-1 cursor-pointer mt-2 p-3 text-sm hover:bg-segundo hover:text-white transition-colors"
+                          className="uppercase font-semibold bg-segundo/5 w-36 flex items-center justify-center gap-1 cursor-pointer mt-2 p-3 text-sm hover:bg-segundo hover:text-primero transition-colors"
                         >
                           Comprar
                         </button>
@@ -274,35 +273,6 @@ const ProductoDetalle = () => {
                     </div>
                   );
                 })}
-
-                {/* <div className="h-1/2 w-full flex items-center gap-4">
-                  <img
-                    src="/collections/complete-fit/img-1.png"
-                    alt="imagen fit 1"
-                    className="h-full object-cover"
-                  />
-                  <div>
-                    <h3 className="font-semibold">Flaunt Micro Brief - Onyx</h3>
-                    <p className="font-bold text-sm mt-2">€32.00</p>
-                    <div className="uppercase font-semibold bg-segundo/5 w-36 flex items-center justify-center gap-1 cursor-pointer mt-2 p-3 text-sm">
-                      quick view
-                    </div>
-                  </div>
-                </div>
-                <div className="h-1/2 w-full flex items-center gap-4">
-                  <img
-                    src="/collections/complete-fit/img-2.png"
-                    alt="imagen fit 1"
-                    className="h-full object-cover"
-                  />
-                  <div>
-                    <h3 className="font-semibold">Flaunt Micro Brief - Onyx</h3>
-                    <p className="font-bold text-sm mt-2">€32.00</p>
-                    <div className="uppercase font-semibold bg-segundo/5 w-36 flex items-center justify-center gap-1 cursor-pointer mt-2 p-3 text-sm">
-                      quick view
-                    </div>
-                  </div>
-                </div> */}
               </div>
             </div>
           </div>
