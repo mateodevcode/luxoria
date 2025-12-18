@@ -1,16 +1,24 @@
 "use client";
 
 import { CollectionCard } from "@/components/productos/CollectionCard";
+import { useParams } from "next/navigation";
 import { useState, useRef, useEffect, useCallback } from "react";
 
-export const SliderProducts = ({ productos = [], titulo = "" }) => {
+export const SliderProducts = ({
+  productos = [],
+  titulo = "",
+  recientes = false,
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
   const [itemsPerView, setItemsPerView] = useState(4);
   const sliderRef = useRef(null);
+  const [listaProductos, setListaProductos] = useState([]);
 
-  // Configuración responsive con useCallback para evitar recreaciones
+  const params = useParams();
+  const producto = productos.find((producto) => producto.url === params.id);
+
   const getItemsPerView = useCallback(() => {
     if (typeof window === "undefined") return 4;
     const width = window.innerWidth;
@@ -19,7 +27,6 @@ export const SliderProducts = ({ productos = [], titulo = "" }) => {
     return 4;
   }, []);
 
-  // Inicialización y manejo de resize
   useEffect(() => {
     setItemsPerView(getItemsPerView());
   }, [getItemsPerView]);
@@ -29,12 +36,10 @@ export const SliderProducts = ({ productos = [], titulo = "" }) => {
       const newItemsPerView = getItemsPerView();
       setItemsPerView(newItemsPerView);
 
-      // Recalcular currentIndex para evitar índices inválidos
-      const newMaxIndex = Math.max(0, productos.length - newItemsPerView);
+      const newMaxIndex = Math.max(0, listaProductos.length - newItemsPerView);
       setCurrentIndex((prev) => Math.min(prev, newMaxIndex));
     };
 
-    // Debounce para mejorar rendimiento
     let resizeTimeout;
     const debouncedResize = () => {
       clearTimeout(resizeTimeout);
@@ -43,15 +48,30 @@ export const SliderProducts = ({ productos = [], titulo = "" }) => {
 
     window.addEventListener("resize", debouncedResize);
 
-    // Cleanup
     return () => {
       window.removeEventListener("resize", debouncedResize);
       clearTimeout(resizeTimeout);
     };
-  }, [getItemsPerView, productos.length]);
+  }, [getItemsPerView, listaProductos.length]);
 
-  // Calcular maxIndex de forma segura
-  const maxIndex = Math.max(0, productos.length - itemsPerView);
+  useEffect(() => {
+    if (recientes) {
+      setListaProductos(productos);
+      return;
+    }
+
+    if (!producto?.coleccionId) {
+      setListaProductos([]);
+      return;
+    }
+
+    const productsToUse = productos.filter(
+      (product) => product.coleccionId === producto.coleccionId
+    );
+    setListaProductos(productsToUse);
+  }, [producto?.coleccionId, productos, recientes]);
+
+  const maxIndex = Math.max(0, listaProductos.length - itemsPerView);
 
   const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => Math.min(prev + 1, maxIndex));
@@ -61,7 +81,6 @@ export const SliderProducts = ({ productos = [], titulo = "" }) => {
     setCurrentIndex((prev) => Math.max(prev - 1, 0));
   }, []);
 
-  // Touch events para mobile
   const handleTouchStart = (e) => {
     setTouchStart(e.targetTouches[0].clientX);
   };
@@ -84,11 +103,9 @@ export const SliderProducts = ({ productos = [], titulo = "" }) => {
     setTouchEnd(null);
   };
 
-  // Validación de productos
-  const productsToUse = Array.isArray(productos) ? productos : [];
+  const slideWidth = 100 / itemsPerView;
 
-  // Evitar renderizado si no hay productos
-  if (productsToUse.length === 0) {
+  if (listaProductos.length === 0) {
     return (
       <div className="w-full relative">
         <div className="relative flex flex-col items-center py-8">
@@ -104,11 +121,8 @@ export const SliderProducts = ({ productos = [], titulo = "" }) => {
     );
   }
 
-  const slideWidth = 100 / itemsPerView;
-
   return (
     <div className="w-full relative">
-      {/* Título de la sección */}
       <div className="relative flex flex-col items-center py-8">
         <h2 className="text-xl font-semibold uppercase font-montserrat text-blackbase-500 dark:text-whitebase-500">
           {titulo}
@@ -116,10 +130,8 @@ export const SliderProducts = ({ productos = [], titulo = "" }) => {
         <div className="w-10 h-[3px] bg-cuarto mt-2"></div>
       </div>
 
-      {/* Slider Container */}
       <div className="relative">
-        {/* Botones de navegación - solo mostrar si hay más productos de los que caben en la vista */}
-        {productsToUse.length > itemsPerView && (
+        {listaProductos.length > itemsPerView && (
           <>
             {currentIndex > 0 && (
               <button
@@ -167,7 +179,6 @@ export const SliderProducts = ({ productos = [], titulo = "" }) => {
           </>
         )}
 
-        {/* Slider */}
         <div
           ref={sliderRef}
           className="overflow-hidden"
@@ -181,7 +192,7 @@ export const SliderProducts = ({ productos = [], titulo = "" }) => {
               transform: `translateX(-${currentIndex * slideWidth}%)`,
             }}
           >
-            {productsToUse.map((product, index) => (
+            {listaProductos.map((product, index) => (
               <div
                 key={product.id || `product-${index}`}
                 className="shrink-0"
@@ -193,7 +204,6 @@ export const SliderProducts = ({ productos = [], titulo = "" }) => {
           </div>
         </div>
 
-        {/* Indicadores de página (dots) - solo mostrar si hay múltiples páginas */}
         {maxIndex > 0 && (
           <div className="flex justify-center mt-6 gap-2">
             {Array.from({ length: maxIndex + 1 }).map((_, index) => (

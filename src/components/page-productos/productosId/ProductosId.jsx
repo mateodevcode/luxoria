@@ -7,21 +7,30 @@ import ProductoDetalle from "./ProductoDetalle";
 import Image from "next/image";
 import { AppContext } from "@/context/AppContext";
 import { formatoDinero } from "@/libs/formatoDinero";
+import { useVistoReciente } from "@/hooks/useVistoReciente";
+import { useParams } from "next/navigation";
 
 const ProductosId = () => {
   const { productos } = useContext(AppContext);
   const [showFooterNav, setShowFooterNav] = useState(false);
-  const targetRef = useRef(null); // el componente que activará el navbar
+  const targetRef = useRef(null);
+  const { recentlyViewed, addViewed, clearViewed, isLoaded } =
+    useVistoReciente();
+  const params = useParams();
+  const producto = productos.find((producto) => producto.url === params.id);
 
   useEffect(() => {
-    // Detectar scroll hasta la mitad de la página
+    if (!producto) return;
+    addViewed(producto?._id);
+  }, [producto?._id, addViewed]);
+
+  useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const halfPage = document.body.scrollHeight / 8;
       setShowFooterNav(scrollY > halfPage);
     };
 
-    // Detectar si un componente está visible
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -48,6 +57,7 @@ const ProductosId = () => {
         <SliderProducts
           productos={productos}
           titulo={"También te puede gustar"}
+          recientes={false}
         />
       </div>
 
@@ -56,10 +66,15 @@ const ProductosId = () => {
       </div>
 
       <div className="w-9/12 mx-auto py-10">
-        <SliderProducts
-          productos={productos}
-          titulo={"Productos recientemente vistos"}
-        />
+        {isLoaded && recentlyViewed.length > 0 && (
+          <SliderProducts
+            productos={
+              productos.filter((p) => recentlyViewed.includes(p._id)) || []
+            }
+            titulo={"Productos recientemente vistos"}
+            recientes={true}
+          />
+        )}
       </div>
 
       {showFooterNav && (
@@ -67,21 +82,21 @@ const ProductosId = () => {
           <div className="flex items-center gap-4 mx-4 md:mx-0">
             <div className="h-16 w-16 md:h-16 md:w-16 flex items-center gap-4">
               <Image
-                src={productos[7]?.imageUrl}
-                alt="imagen fit 1"
+                src={producto?.imageUrl}
+                alt="imagen producto"
                 className="h-full object-cover rounded-full"
                 width={500}
                 height={500}
               />
             </div>
             <div className="flex flex-col">
-              <h3>{productos[7]?.nombre}</h3>
+              <h3>{producto?.nombre}</h3>
               <p className="text-xs font-semibold">
-                {formatoDinero(productos[7].precio)}
+                {formatoDinero(producto?.precio)}
               </p>
             </div>
             <div className="md:grid grid-cols-6 gap-1 hidden">
-              {productos[7]?.size.map((size) => (
+              {producto?.size.map((size) => (
                 <button
                   key={size}
                   className="border border-segundo p-2 text-xs rounded font-semibold hover:border-cuarto transition-colors bg-primero hover:bg-cuarto/50"
@@ -92,7 +107,6 @@ const ProductosId = () => {
             </div>
           </div>
 
-          {/* Boton de agregar al carrito */}
           <div className="mx-4 md:mx-0">
             <button className="uppercase bg-segundo hover:bg-segundo/80 px-6 py-2 rounded font-semibold text-sm text-primero hover:active:scale-95 transition-all duration-300">
               add
