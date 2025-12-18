@@ -15,6 +15,7 @@ import CarruselNav from "@/components/header/carrusel/CarruselNav";
 import Reviews from "@/components/reviews/Reviews";
 import ModalReview from "@/components/reviews/ModalReviews";
 import CarruselBanner from "@/components/carrusel-banner/CarruselBanner";
+import ModalMenuHamburguesa from "@/components/modales/ModalMenuHamburguesa";
 
 export default function Home() {
   return (
@@ -33,6 +34,7 @@ export default function Home() {
       <ModalCarritoCompras />
       <CarruselBanner />
       <ModalReview />
+      <ModalMenuHamburguesa />
       <Reviews />
       <Footer />
       <style>{scrollbarStyles.home}</style>

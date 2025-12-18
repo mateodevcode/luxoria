@@ -71,7 +71,7 @@ const ListaProductos = ({ filtroProductos }) => {
           <span className="text-sm">Filtros</span>
           <BsFilter className="text-2xl" />
         </div>
-        <div className="h-full flex items-center justify-center gap-2 px-4 text-segundo w-full md:w-80">
+        <div className="h-full flex items-center justify-center gap-2 px-4 text-segundo w-96">
           <span className="text-xs md:text-sm">
             Mostrando {productosFiltrados.length} de {productos.length}{" "}
             productos
@@ -93,7 +93,7 @@ const ListaProductos = ({ filtroProductos }) => {
           </button>
         </div>
         {/* Mobile */}
-        <div className="w-full h-full flex items-center justify-end gap-2 mx-4 md:hidden">
+        <div className="h-full flex items-center justify-end gap-2 px-4 md:hidden">
           <button
             className="cursor-pointer select-none active:scale-95 transition-all duration-200 text-segundo hover:text-segundo/70"
             onClick={() => setSizeGrid("grid-cols-1")}
