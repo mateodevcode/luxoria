@@ -11,8 +11,11 @@ import { LuSearch } from "react-icons/lu";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 export default function ModalMenuHamburguesa() {
-  const { openModalMenuHamburguesa, setOpenModalMenuHamburguesa } =
-    useContext(AppContext);
+  const {
+    openModalMenuHamburguesa,
+    setOpenModalMenuHamburguesa,
+    setOpenModalSearch,
+  } = useContext(AppContext);
 
   useEffect(() => {
     if (openModalMenuHamburguesa) {
@@ -61,13 +64,16 @@ export default function ModalMenuHamburguesa() {
 
             {/* Contenido */}
             <div className="h-[92svh] flex flex-col">
-              <Link
-                href={"/"}
+              <div
+                onClick={() => {
+                  setOpenModalMenuHamburguesa(false);
+                  setOpenModalSearch(true);
+                }}
                 className="text-sm text-segundo hover:text-segundo transition-colors duration-200 uppercase flex items-center justify-between gap-2 py-4 px-6 border-b border-segundo/10 hover:bg-cuarto"
               >
-                <span>Search</span>
+                <span>Buscar</span>
                 <LuSearch className="text-xl" />
-              </Link>
+              </div>
               {menuEnlaces.map((enlace, index) => (
                 <Link
                   key={index}

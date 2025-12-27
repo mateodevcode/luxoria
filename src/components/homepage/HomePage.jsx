@@ -17,6 +17,8 @@ import ModalReview from "@/components/reviews/ModalReviews";
 import CarruselBanner from "@/components/carrusel-banner/CarruselBanner";
 import ModalMenuHamburguesa from "@/components/modales/ModalMenuHamburguesa";
 import NavbarMobile from "../header/navbar/NavbarMobile";
+import SearchResult from "../header/hover-card/SearchResult";
+import Search from "../header/hover-card/Search";
 
 export default function HomePage() {
   return (
@@ -24,6 +26,8 @@ export default function HomePage() {
       <BannerTop />
       <Navbar />
       <NavbarMobile />
+      <Search />
+      <SearchResult />
       <CarruselNav />
       <RedesLateral />
       <Hero />
