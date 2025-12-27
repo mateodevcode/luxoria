@@ -6,7 +6,7 @@ import CategoriaSearch from "@/components/page-colecciones/CategoriaSearch";
 import PageColecciones from "@/components/page-colecciones/PageColecciones";
 import RedesLateral from "@/components/redes-lateral/RedesLateral";
 import { scrollbarStyles } from "@/data/data.styles.scrollbar";
-import React from "react";
+import React, { Suspense } from "react";
 
 const page = () => {
   return (
@@ -16,7 +16,9 @@ const page = () => {
       <NavbarMobile />
       <RedesLateral />
       <PageColecciones />
-      <CategoriaSearch />
+      <Suspense fallback={<div>Loading...</div>}>
+        <CategoriaSearch />
+      </Suspense>
       <Footer />
       <style>{scrollbarStyles.home}</style>
     </div>
