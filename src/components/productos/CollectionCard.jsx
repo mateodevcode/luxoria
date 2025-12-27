@@ -66,7 +66,7 @@ export const CollectionCard = ({ item, filtroProductos }) => {
   }, [isHovered, images, item.imagenes.length]);
 
   return (
-    <div className="dark:bg-segundo flex flex-col gap-2 bg-primero h-[600px] font-poppins">
+    <div className="dark:bg-segundo flex flex-col gap-2 bg-primero h-[300px] md:h-[600px] font-poppins">
       <div
         className="w-full h-full relative flex items-center justify-center group max-h-[500px] overflow-hidden"
         onMouseEnter={() => setIsHovered(true)}

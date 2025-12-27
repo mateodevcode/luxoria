@@ -20,6 +20,7 @@ const Navbar = () => {
     setOpenModalCarritoCompras,
     setOpenModalMenuHamburguesa,
     setOpenModalSearch,
+    anchoPantalla,
   } = useContext(AppContext);
   const { handleMensaje } = useMensaje();
 
@@ -30,6 +31,10 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  if (anchoPantalla < 768) {
+    return null;
+  }
 
   return (
     <div
@@ -57,18 +62,6 @@ const Navbar = () => {
           <button onClick={() => setOpenModalMenuHamburguesa(true)}>
             <HiMenuAlt2 className="text-2xl" />
           </button>
-        </div>
-
-        <div className="w-full flex items-center justify-center md:hidden">
-          <Link href={"/"} className="w-auto h-8">
-            <Image
-              src={logo.src}
-              alt={logo.alt}
-              width={500}
-              height={500}
-              className="w-full h-full object-cover"
-            />
-          </Link>
         </div>
 
         <div className="hidden lg:flex items-center gap-8 mx-5 md:mx-10 w-10 md:w-48">

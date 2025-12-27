@@ -6,7 +6,7 @@ import React from "react";
 
 const RedesLateral = () => {
   return (
-    <div className="fixed md:top-1/2 top-60 left-0 z-30 w-max h-auto flex flex-col gap-4 bg-segundo p-4 bg-linear-60 from-segundo to-emerald-900">
+    <div className="fixed md:top-1/2 top-60 left-0 z-30 w-max h-auto flex flex-col gap-4 bg-segundo p-4 bg-linear-60 from-segundo to-emerald-900 rounded-r-md">
       {footer.redesSociales.map((red, index) => (
         <Link
           key={index}

@@ -4,14 +4,14 @@ import React, { useContext, useEffect, useState } from "react";
 import { AiFillAppstore } from "react-icons/ai";
 import { BsFilter, BsFilterLeft } from "react-icons/bs";
 import { MdApps } from "react-icons/md";
-import { CollectionCard } from "./CollectionCard";
 import { FaSquare } from "react-icons/fa6";
 import Link from "next/link";
 import { AppContext } from "@/context/AppContext";
 import Image from "next/image";
 import { promoProductos } from "@/data/data.promo";
+import { CollectionCard } from "../productos/CollectionCard";
 
-const ListaProductos = ({ filtroProductos }) => {
+const ListaProductosPage = ({ filtroProductos }) => {
   const { productos, anchoPantalla } = useContext(AppContext);
   const [sizeGrid, setSizeGrid] = useState("grid-cols-4");
   const [isPromotionVisible, setIsPromotionVisible] = useState(true);
@@ -109,8 +109,7 @@ const ListaProductos = ({ filtroProductos }) => {
 
       {/* Grid de colecciones */}
       <div className={`grid gap-6 md:gap-6 mt-8 ${sizeGrid}`}>
-        {/* Publicidad condicional - siempre primera */}
-        {haveAPromo && (
+        {/* {haveAPromo && (
           <Link
             href={`${promoProductos.url}`}
             className="overflow-hidden flex items-center justify-start h-[600px] flex-col"
@@ -125,7 +124,7 @@ const ListaProductos = ({ filtroProductos }) => {
               />
             </div>
           </Link>
-        )}
+        )} */}
 
         {/* Colecciones */}
         {productosFiltrados.map((item, index) => (
@@ -141,4 +140,4 @@ const ListaProductos = ({ filtroProductos }) => {
   );
 };
 
-export default ListaProductos;
+export default ListaProductosPage;
