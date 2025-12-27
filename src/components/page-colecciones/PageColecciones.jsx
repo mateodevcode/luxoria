@@ -70,7 +70,7 @@ const Collections = () => {
       </div>
 
       {/* Contenedor principal con scroll horizontal en móvil */}
-      <div className="w-full px-4 pb-20 flex md:hidden">
+      <div className="w-full px-4 pb-5 flex md:hidden">
         <div className="flex overflow-x-auto scrollbar-hide gap-4 pb-4">
           {colecciones.map((item, index) => (
             <Link

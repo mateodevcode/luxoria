@@ -4,6 +4,10 @@ import { AppProvider } from "@/context/AppContext";
 import { Toaster } from "sonner";
 import BotonWhatsapp from "@/components/botonFlotante/BotonWhatsapp";
 import { AuthProvider } from "./Providers";
+import ModalMenuHamburguesa from "@/components/modales/ModalMenuHamburguesa";
+import ModalCarritoCompras from "@/components/modales/ModalCarritoCompras";
+import Search from "@/components/header/hover-card/Search";
+import SearchResult from "@/components/header/hover-card/SearchResult";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,6 +44,10 @@ export default function RootLayout({ children }) {
         <AuthProvider>
           <AppProvider>
             {children}
+            <Search />
+            <SearchResult />
+            <ModalMenuHamburguesa />
+            <ModalCarritoCompras />
             <BotonWhatsapp />
             <Toaster />
           </AppProvider>

@@ -3,7 +3,7 @@
 import { AppContext } from "@/context/AppContext";
 import { menuEnlaces } from "@/data/data.menu.hamburguesa";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useContext, useEffect } from "react";
 import { AiOutlineShopping } from "react-icons/ai";
 import { IoClose } from "react-icons/io5";
@@ -16,6 +16,7 @@ export default function ModalMenuHamburguesa() {
     setOpenModalMenuHamburguesa,
     setOpenModalSearch,
   } = useContext(AppContext);
+  const router = useRouter();
 
   useEffect(() => {
     if (openModalMenuHamburguesa) {
@@ -75,14 +76,17 @@ export default function ModalMenuHamburguesa() {
                 <LuSearch className="text-xl" />
               </div>
               {menuEnlaces.map((enlace, index) => (
-                <Link
+                <div
                   key={index}
-                  href={enlace.href}
+                  onClick={() => {
+                    setOpenModalMenuHamburguesa(false);
+                    router.push(enlace.href);
+                  }}
                   className="text-sm font-semibold text-segundo hover:text-segundo transition-colors duration-200 uppercase flex items-center justify-between gap-2 py-4 px-6 border-b border-segundo/10 hover:bg-cuarto"
                 >
                   <span>{enlace.name}</span>
                   <MdOutlineKeyboardArrowRight className="text-2xl" />
-                </Link>
+                </div>
               ))}
             </div>
           </motion.div>

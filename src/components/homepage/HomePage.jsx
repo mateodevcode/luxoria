@@ -10,15 +10,11 @@ import ImageCarousel from "@/components/hero/ImageCarousel";
 import ColeccionesCarousel from "@/components/colecciones/ColeccionesCarousel";
 import CarruselInfinito from "@/components/beneficios/CarruselInfinito";
 import ModalImagen from "@/components/page-productos/productosId/ModalImagen";
-import ModalCarritoCompras from "@/components/modales/ModalCarritoCompras";
 import CarruselNav from "@/components/header/carrusel/CarruselNav";
 import Reviews from "@/components/reviews/Reviews";
 import ModalReview from "@/components/reviews/ModalReviews";
 import CarruselBanner from "@/components/carrusel-banner/CarruselBanner";
-import ModalMenuHamburguesa from "@/components/modales/ModalMenuHamburguesa";
-import NavbarMobile from "../header/navbar/NavbarMobile";
-import SearchResult from "../header/hover-card/SearchResult";
-import Search from "../header/hover-card/Search";
+import NavbarMobile from "@/components/header/navbar/NavbarMobile";
 
 export default function HomePage() {
   return (
@@ -26,8 +22,6 @@ export default function HomePage() {
       <BannerTop />
       <Navbar />
       <NavbarMobile />
-      <Search />
-      <SearchResult />
       <CarruselNav />
       <RedesLateral />
       <Hero />
@@ -37,10 +31,8 @@ export default function HomePage() {
       <CarruselInfinito />
       <Productos />
       <ModalImagen />
-      <ModalCarritoCompras />
       <CarruselBanner />
       <ModalReview />
-      <ModalMenuHamburguesa />
       <Reviews />
       <Footer />
       <style>{scrollbarStyles.home}</style>

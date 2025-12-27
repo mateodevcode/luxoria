@@ -1,10 +1,10 @@
 export const menuEnlaces = [
-  { name: "Nuevas Colecciones", href: "/collections/nuevas-joyas" },
-  { name: "Anillos", href: "/collections/anillos" },
-  { name: "Collares", href: "/collections/collares" },
-  { name: "Pulseras", href: "/collections/pulseras" },
-  { name: "Aretes", href: "/collections/aretes" },
-  { name: "Joyería Fina", href: "/collections/joyeria-fina" },
-  { name: "Regalos", href: "/collections/regalos" },
-  { name: "Ofertas", href: "/collections/ofertas" },
+  { name: "Nuevas Colecciones", href: "/colecciones" },
+  { name: "Anillos", href: "/colecciones?categoria=anillo" },
+  { name: "Collares", href: "/colecciones?categoria=collar" },
+  { name: "Pulseras", href: "/colecciones?categoria=pulsera" },
+  { name: "Aretes", href: "/colecciones?categoria=arete" },
+  { name: "Joyería Fina", href: "/colecciones?categoria=esmeralda" },
+  // { name: "Regalos", href: "/colecciones?categoria=regalos" },
+  // { name: "Ofertas", href: "/colecciones?categoria=ofertas" },
 ];
