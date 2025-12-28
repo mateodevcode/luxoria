@@ -2,7 +2,9 @@
 
 import { AppContext } from "@/context/AppContext";
 import { menuEnlaces } from "@/data/data.menu.hamburguesa";
+import useIniciarSesion from "@/hooks/useIniciarSesion";
 import { motion, AnimatePresence } from "framer-motion";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect } from "react";
 import { AiOutlineShopping } from "react-icons/ai";
@@ -17,6 +19,8 @@ export default function ModalMenuHamburguesa() {
     setOpenModalSearch,
   } = useContext(AppContext);
   const router = useRouter();
+  const { handleCerrarSesion } = useIniciarSesion();
+  const { data: session, status } = useSession();
 
   useEffect(() => {
     if (openModalMenuHamburguesa) {
@@ -88,6 +92,30 @@ export default function ModalMenuHamburguesa() {
                   <MdOutlineKeyboardArrowRight className="text-2xl" />
                 </div>
               ))}
+              {status === "authenticated" && (
+                <div
+                  onClick={() => {
+                    setOpenModalMenuHamburguesa(false);
+                    handleCerrarSesion();
+                  }}
+                  className="text-sm font-semibold text-segundo hover:text-segundo transition-colors duration-200 uppercase flex items-center justify-between gap-2 py-4 px-6 border-b border-segundo/10 hover:bg-cuarto cursor-pointer select-none"
+                >
+                  <span>Cerrar Sesión</span>
+                  <MdOutlineKeyboardArrowRight className="text-2xl" />
+                </div>
+              )}
+              {status === "unauthenticated" && (
+                <div
+                  onClick={() => {
+                    setOpenModalMenuHamburguesa(false);
+                    router.push("/auth/iniciar-sesion");
+                  }}
+                  className="text-sm font-semibold text-segundo hover:text-segundo transition-colors duration-200 uppercase flex items-center justify-between gap-2 py-4 px-6 border-b border-segundo/10 hover:bg-cuarto cursor-pointer select-none"
+                >
+                  <span>Iniciar Sesión</span>
+                  <MdOutlineKeyboardArrowRight className="text-2xl" />
+                </div>
+              )}
             </div>
           </motion.div>
         )}

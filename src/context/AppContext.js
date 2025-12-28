@@ -42,6 +42,7 @@ export const AppProvider = ({ children }) => {
     ],
   });
   const [loading, setLoading] = useState(false);
+  const [usuarios, setUsuarios] = useState([]);
 
   useEffect(() => {
     // Solo se ejecuta en el cliente
@@ -103,6 +104,24 @@ export const AppProvider = ({ children }) => {
     cargarProductos();
   }, []);
 
+  const fetchUsuario = async () => {
+    try {
+      const res = await apiServerBackend(`api/usuarios`, "GET");
+      const { data: usuariosRes, message, success, error } = res;
+      if (success === true) {
+        setUsuarios(usuariosRes);
+      } else {
+        console.warn("⚠️ No se pudo cargar usuarios:", error);
+        toast.error("No se pudo cargar los usuarios", {
+          description: error,
+          position: "bottom-right",
+        });
+      }
+    } catch (error) {
+      console.error("🚨 Error al cargar los usuarios:", error);
+    }
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -136,6 +155,9 @@ export const AppProvider = ({ children }) => {
         setFormDataUsuario,
         loading,
         setLoading,
+        fetchUsuario,
+        usuarios,
+        setUsuarios,
       }}
     >
       {children}

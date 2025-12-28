@@ -4,20 +4,25 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { Lock, Mail, User } from "lucide-react";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AppContext } from "@/context/AppContext";
 import useUsuario from "@/hooks/useUsuario";
+import { toast } from "sonner";
 
 export function FormRegistrarse() {
-  const { formDataUsuario } = useContext(AppContext);
-  const { crearUsuario, handleChange } = useUsuario();
+  const { formDataUsuario, fetchUsuario } = useContext(AppContext);
+  const { crearUsuario, handleChange, loading } = useUsuario();
 
   const [confirmarPassword, setConfirmarPassword] = useState("");
   const [verContraseña, setVerContraseña] = useState(false);
   const [verConfirmarContraseña, setVerConfirmarContraseña] = useState(false);
 
+  useEffect(() => {
+    fetchUsuario();
+  }, []);
+
   return (
-    <form className="flex flex-col gap-6 text-segundo">
+    <form className="flex flex-col gap-6 text-segundo font-poppins">
       <div className="flex flex-col items-center gap-2 text-center">
         <h1 className="text-2xl font-bold">Crear una cuenta</h1>
       </div>

@@ -37,7 +37,7 @@ const useIniciarSesion = () => {
         });
         resetFormDataUsuario();
         setLoading(false);
-        router.push("/dashboard");
+        router.push("/");
       }
     } catch (error) {
       console.error("🚨 Error al manejar login:", error);
@@ -78,8 +78,6 @@ const useIniciarSesion = () => {
       callbackUrl: `/`,
     });
   };
-
-  
 
   return {
     handleChange,

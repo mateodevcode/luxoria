@@ -13,6 +13,8 @@ import { Phone } from "lucide-react";
 import Comprar from "../hover-card/Comprar";
 import Esmeraldas from "../hover-card/Esmeraldas";
 import useMensaje from "@/hooks/useMensaje";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -23,6 +25,8 @@ const Navbar = () => {
     anchoPantalla,
   } = useContext(AppContext);
   const { handleMensaje } = useMensaje();
+  const { data: session, status } = useSession();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,6 +35,17 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleLogin = () => {
+    if (status === "loading") return;
+    if (status === "authenticated") return;
+
+    if (status === "unauthenticated") {
+      router.push("/auth/iniciar-sesion");
+    } else {
+      router.push("/auth/registrarse");
+    }
+  };
 
   if (anchoPantalla < 768) {
     return null;
@@ -100,21 +115,21 @@ const Navbar = () => {
 
         {/* Iconos */}
         <div className="flex items-center gap-8 mx-3 md:mx-5 lg:mx-10 md:w-40 justify-end">
-          <Link
-            href="/profile"
+          <div
             className="relative group hidden md:flex cursor-pointer select-none"
+            onClick={() => handleLogin()}
           >
-            <BsPerson className="text-base relative z-10 text-segundo hover:text-segundo" />
+            <BsPerson className="text-base relative z-10 text-segundo hover:text-cuarto" />
             <span className="absolute inset-0 flex items-center justify-center">
               <span className="hover-circle"></span>
             </span>
-          </Link>
+          </div>
 
           <div
             className="relative group hidden md:flex cursor-pointer select-none"
             onClick={() => setOpenModalSearch(true)}
           >
-            <LuSearch className="text-base relative z-10 text-segundo hover:text-segundo" />
+            <LuSearch className="text-base relative z-10 text-segundo hover:text-cuarto" />
             <span className="absolute inset-0 flex items-center justify-center">
               <span className="hover-circle"></span>
             </span>

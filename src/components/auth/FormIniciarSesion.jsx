@@ -8,12 +8,14 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { AppContext } from "@/context/AppContext";
 import useIniciarSesion from "@/hooks/useIniciarSesion";
 import Link from "next/link";
+import useResetForm from "@/hooks/useResetForm";
 
 export function FormIniciarSesion() {
   const router = useRouter();
   const { formDataUsuario, setFormDataUsuario } = useContext(AppContext);
   const [verContraseña, setVerContraseña] = useState(false);
   const { handleChange, handleLoginCredenciales } = useIniciarSesion();
+  const { resetFormDataUsuario } = useResetForm();
   const searchParams = useSearchParams();
   const emailUrl = searchParams.get("email");
 
@@ -94,11 +96,11 @@ export function FormIniciarSesion() {
         <button
           type="button"
           onClick={() => {
-            router.push("/auth/registrarse");
             setFormDataUsuario({
               ...formDataUsuario,
               email: "",
             });
+            router.push("/auth/registrarse");
           }}
           className="font-semibold hover:text-cuarto"
         >

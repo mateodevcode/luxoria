@@ -5,6 +5,4 @@ export const menuEnlaces = [
   { name: "Pulseras", href: "/colecciones?categoria=pulsera" },
   { name: "Aretes", href: "/colecciones?categoria=arete" },
   { name: "Joyería Fina", href: "/colecciones?categoria=esmeralda" },
-  { name: "Iniciar Sesión", href: "/auth/iniciar-sesion" },
-  { name: "Registrarse", href: "/auth/registrarse" },
 ];

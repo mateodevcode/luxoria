@@ -62,13 +62,16 @@ const useUsuario = () => {
 
       if (success) {
         setUsuarios((prevUsuarios) => [...prevUsuarios, data]);
-
-        toast.success(message || "Usuario creado exitosamente", {
+        toast.success(message, {
           position: "bottom-right",
         });
         setLoading(false);
         resetFormDataUsuario();
-        router.push("/auth/signin");
+        setFormDataUsuario((prev) => ({
+          ...prev,
+          email: usuario.email,
+        }));
+        router.push("/auth/iniciar-sesion" + "?email=" + usuario.email);
       } else {
         toast.error(error, {
           position: "bottom-right",
