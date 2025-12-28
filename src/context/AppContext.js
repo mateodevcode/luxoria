@@ -21,6 +21,27 @@ export const AppProvider = ({ children }) => {
   const [colecciones, setColecciones] = useState([]);
   const [productos, setProductos] = useState([]);
   const [anchoPantalla, setAnchoPantalla] = useState(0);
+  const [formDataUsuario, setFormDataUsuario] = useState({
+    name: "",
+    email: "",
+    telefono: "",
+    password: "",
+    imageUrl: "",
+    ubicacion: "",
+    publicId: "",
+    plan: "gratis",
+    estado: "activo",
+    role: "Usuario",
+    opcion: "crear",
+    notificaciones: [
+      {
+        mensaje: "Bienvenido a Seventwo!. Gracias por registrarte.",
+        fecha: new Date(),
+        leido: false,
+      },
+    ],
+  });
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     // Solo se ejecuta en el cliente
@@ -111,6 +132,10 @@ export const AppProvider = ({ children }) => {
         setProductos,
         anchoPantalla,
         setAnchoPantalla,
+        formDataUsuario,
+        setFormDataUsuario,
+        loading,
+        setLoading,
       }}
     >
       {children}

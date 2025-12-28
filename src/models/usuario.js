@@ -63,10 +63,6 @@ const usuarioSchema = new Schema(
       type: String,
       default: "Usuario",
     },
-    barberoID: {
-      type: String,
-      default: "",
-    },
     intentos_fallidos: {
       type: Number,
       default: 0,

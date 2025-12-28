@@ -9,11 +9,14 @@ import { useContext, useEffect } from "react";
 import { IoClose } from "react-icons/io5";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { useRouter } from "next/navigation";
+import { Cart } from "../cart/Cart";
+import { useCartStore } from "@/core/store/cartStore";
 
 export default function ModalCarritoCompras() {
   const { openModalCarritoCompras, setOpenModalCarritoCompras, productos } =
     useContext(AppContext);
   const router = useRouter();
+  const { addItem, isLoading, error } = useCartStore();
 
   useEffect(() => {
     if (openModalCarritoCompras) {
@@ -60,11 +63,12 @@ export default function ModalCarritoCompras() {
 
             {/* Contenido */}
             <div className="p-6 h-[92svh] flex flex-col gap-4">
-              <div className="w-full h-96 flex items-center justify-center">
+              {/* <div className="w-full h-96 flex items-center justify-center">
                 <span className="text-2xl  text-segundo">
                   Tu carrito está vacío
                 </span>
-              </div>
+              </div> */}
+              <Cart />
               <div className="w-full h-full flex items-center justify-start flex-col gap-4">
                 <button className="w-full bg-segundo hover:bg-segundo/80 text-primero text-center p-3 uppercase mb-4 cursor-pointer select-none active:scale-95 duration-75 font-medium text-xs">
                   Ver productos
@@ -113,7 +117,11 @@ export default function ModalCarritoCompras() {
                             className={`${
                               index !== 1 ? "w-full" : "w-1/2"
                             } p-3 bg-segundo hover:bg-segundo/80 text-primero text-xs font-medium cursor-pointer select-none active:scale-95 duration-75 uppercase`}
-                            onClick={(e) => e.stopPropagation()}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              addItem(producto);
+                              console.log(producto);
+                            }}
                           >
                             comprar
                           </button>
