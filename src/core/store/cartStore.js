@@ -1,5 +1,6 @@
-// src/core/store/cartStore.js (ACTUALIZADO)
-
+// src/core/store/cartStore.js
+"use client";
+import { apiServer } from "@/app/actions/apiServer";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -12,100 +13,120 @@ export const useCartStore = create(
       error: null,
       userId: null,
 
+      // Cargar carrito del usuario
       initCart: async (userId) => {
         set({ userId, isLoading: true, error: null });
         try {
-          const response = await fetch(`/api/carts/${userId}`);
-          if (!response.ok) throw new Error("Error fetching cart");
+          const response = await apiServer(`/api/carts/${userId}`, "GET");
 
-          const data = await response.json();
-
-          if (data.success) {
-            set({
-              items: data.data.items || [],
-              total: data.data.total || 0,
-              isLoading: false,
-            });
+          if (!response.success) {
+            throw new Error(response.message || "Error fetching cart");
           }
+
+          set({
+            items: response.data?.items || [],
+            total: response.data?.total || 0,
+            isLoading: false,
+            error: null,
+          });
         } catch (error) {
           set({ error: error.message, isLoading: false });
         }
       },
 
+      // Agregar producto al carrito
       addItem: async (product) => {
         const userId = get().userId;
+        const currentItems = get().items;
 
-        if (!userId) {
-          set({ error: "Usuario no autenticado" });
-          return;
+        // Buscar si el producto ya existe
+        const exists = currentItems.find(
+          (i) => i.productId._id === product._id || i.productId === product._id
+        );
+        let newItems;
+
+        if (exists) {
+          // Si existe, aumentar cantidad
+          newItems = currentItems.map((i) =>
+            i.productId._id === product._id || i.productId === product._id
+              ? { ...i, quantity: i.quantity + 1 }
+              : i
+          );
+        } else {
+          // Si no existe, agregarlo con estructura normalizada
+          newItems = [
+            ...currentItems,
+            {
+              productId: {
+                _id: product._id,
+                nombre: product.nombre,
+                precio: product.precio,
+                imageUrl: product.imageUrl,
+              },
+              quantity: 1,
+            },
+          ];
         }
 
-        set({ isLoading: true, error: null });
+        // Calcular total (compatible con ambas estructuras)
+        const newTotal = newItems.reduce((sum, item) => {
+          const precio = item.productId?.precio || item.precio || 0;
+          return sum + precio * item.quantity;
+        }, 0);
 
+        // Actualizar estado local (instantáneo)
+        set({ items: newItems, total: newTotal });
+        console.log("se actualizo en local", {
+          items: newItems,
+          total: newTotal,
+        });
+
+        // Sincronizar con backend
         try {
-          const response = await fetch(`/api/carts/${userId}`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              productId: product._id,
-              quantity: 1,
-            }),
+          await apiServer(`/api/carts`, "POST", {
+            userId,
+            items: newItems,
+            total: newTotal,
           });
-
-          if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.message || "Error agregando producto");
-          }
-
-          const data = await response.json();
-
-          if (data.success) {
-            set({
-              items: data.data.items || [],
-              total: data.data.total || 0,
-              isLoading: false,
-            });
-          }
+          console.log("se actualizo en backend");
         } catch (error) {
-          set({ error: error.message, isLoading: false });
-          console.error("Error adding item:", error);
+          set({ error: error.message });
         }
       },
 
+      // Eliminar producto del carrito
       removeItem: async (productId) => {
         const userId = get().userId;
         const currentItems = get().items;
 
-        const newItems = currentItems.filter((i) => i.productId !== productId);
-        const newTotal = newItems.reduce(
-          (sum, item) => sum + item.price * item.quantity,
-          0
+        // Filtrar el producto (compatible con ambas estructuras)
+        const newItems = currentItems.filter(
+          (i) => i.productId._id !== productId && i.productId !== productId
         );
 
-        // Actualizar optimísticamente
-        set({ items: newItems, total: newTotal, isLoading: true, error: null });
+        // Recalcular total
+        const newTotal = newItems.reduce((sum, item) => {
+          const precio = item.productId?.precio || item.precio || 0;
+          return sum + precio * item.quantity;
+        }, 0);
 
+        // Actualizar estado
+        set({ items: newItems, total: newTotal });
+
+        // Sincronizar con backend
         try {
-          const response = await fetch(`/api/carts/${userId}`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ items: newItems, total: newTotal }),
+          await apiServer(`/api/carts/${userId}`, "PUT", {
+            items: newItems,
+            total: newTotal,
           });
-
-          if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.message || "Error eliminando producto");
-          }
-
-          set({ isLoading: false });
         } catch (error) {
-          set({ error: error.message, isLoading: false });
-          // Revertir cambios en caso de error
-          get().initCart(userId);
+          set({ error: error.message });
         }
       },
 
+      // Actualizar cantidad de un producto
       updateQuantity: async (productId, quantity) => {
+        // Si cantidad es 0 o menos, eliminar el producto
         if (quantity < 1) {
           get().removeItem(productId);
           return;
@@ -114,58 +135,63 @@ export const useCartStore = create(
         const userId = get().userId;
         const currentItems = get().items;
 
+        // Mapear items con la nueva cantidad (compatible con ambas estructuras)
         const newItems = currentItems.map((i) =>
-          i.productId === productId ? { ...i, quantity } : i
+          i.productId._id === productId || i.productId === productId
+            ? { ...i, quantity }
+            : i
         );
 
-        const newTotal = newItems.reduce(
-          (sum, item) => sum + item.price * item.quantity,
-          0
-        );
+        // Recalcular total
+        const newTotal = newItems.reduce((sum, item) => {
+          const precio = item.productId?.precio || item.precio || 0;
+          return sum + precio * item.quantity;
+        }, 0);
 
-        // Actualizar optimísticamente
-        set({ items: newItems, total: newTotal, isLoading: true, error: null });
+        // Actualizar estado
+        set({ items: newItems, total: newTotal });
 
+        // Sincronizar con backend
         try {
-          const response = await fetch(`/api/carts/${userId}`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ items: newItems, total: newTotal }),
+          await apiServer(`/api/carts/${userId}`, "PUT", {
+            items: newItems,
+            total: newTotal,
           });
-
-          if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.message || "Error actualizando cantidad");
-          }
-
-          set({ isLoading: false });
         } catch (error) {
-          set({ error: error.message, isLoading: false });
-          // Revertir cambios en caso de error
-          get().initCart(userId);
+          set({ error: error.message });
         }
       },
 
+      // Vaciar carrito
       clearCart: async () => {
         const userId = get().userId;
 
-        set({ isLoading: true, error: null });
+        // Limpiar estado
+        set({ items: [], total: 0 });
 
+        // Sincronizar con backend
         try {
-          const response = await fetch(`/api/carts/${userId}`, {
-            method: "DELETE",
-          });
-
-          if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.message || "Error vaciando carrito");
-          }
-
-          set({ items: [], total: 0, isLoading: false });
+          await apiServer(`/api/carts/${userId}`, "DELETE");
         } catch (error) {
-          set({ error: error.message, isLoading: false });
+          set({ error: error.message });
         }
       },
+
+      // Getter para obtener cantidad de items
+      getItemCount: () => {
+        return get().items.reduce((count, item) => count + item.quantity, 0);
+      },
+
+      // Getter para obtener un item específico
+      getItem: (productId) => {
+        return get().items.find((i) => i.productId === productId);
+      },
+
+      // Setter del error
+      setError: (error) => set({ error }),
+
+      // Setter de carga
+      setIsLoading: (isLoading) => set({ isLoading }),
     }),
     {
       name: "cart-storage",

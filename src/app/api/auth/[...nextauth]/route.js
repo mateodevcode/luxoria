@@ -4,9 +4,9 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
 import bcrypt from "bcryptjs";
-import Usuario from "@/models/Usuario";
 import { connectMongoDB } from "@/lib/db";
 import { iniciarSesionValidate } from "@/validations/iniciarSesion";
+import Usuario from "@/models/Usuario";
 
 export const authOptions = {
   providers: [

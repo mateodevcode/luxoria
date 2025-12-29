@@ -7,15 +7,16 @@ export const useAuthStore = create(
       user: null,
       isLoggedIn: false,
 
-      // Simular login
-      login: (userId) => {
+      // Actualizar usuario desde sesión de NextAuth
+      setUser: (userData) => {
         set({
-          user: { _id: userId, email: `user${userId}@example.com` },
-          isLoggedIn: true,
+          user: userData,
+          isLoggedIn: !!userData,
         });
       },
 
-      logout: () => {
+      // Limpiar usuario al cerrar sesión
+      clearUser: () => {
         set({ user: null, isLoggedIn: false });
       },
     }),
