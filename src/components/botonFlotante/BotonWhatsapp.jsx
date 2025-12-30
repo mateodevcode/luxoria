@@ -20,7 +20,7 @@ const BotonWhatsapp = () => {
     <>
       {/* Botón flotante de WhatsApp */}
       <div
-        className="fixed z-40 right-2 md:right-10 bottom-10 md:bottom-8 rounded-full cursor-pointer hover:text-primero/80 text-primero dark:text-primero dark:shadow-primero/10 shadow-segundo/10 hover:opacity-70 transition-all duration-300 hover:scale-105"
+        className="fixed z-40 right-2 md:right-10 bottom-4 md:bottom-8 rounded-full cursor-pointer hover:text-primero/80 text-primero dark:text-primero dark:shadow-primero/10 shadow-segundo/10 hover:opacity-70 transition-all duration-300 hover:scale-105"
         onClick={() => {
           setModalOpenBotonFlotante(!modalOpenBotonFlotante);
           setShow(false);

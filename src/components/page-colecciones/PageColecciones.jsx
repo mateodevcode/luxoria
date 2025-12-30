@@ -21,12 +21,12 @@ const Collections = () => {
         </h2>
         <div className="w-10 h-[3px] bg-cuarto mt-2"></div>
       </div>
-      <div className="w-9/12 mx-auto pb-20 pt-10 gap-6 md:grid grid-cols-2 hidden">
+      <div className="w-11/12 mx-auto pb-20 pt-10 gap-6 md:grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 hidden">
         {colecciones.map((item, index) => (
           <Link
             href={`/colecciones/${item.url}`}
             key={index}
-            className="relative group overflow-hidden h-[450px] cursor-pointer"
+            className="relative group overflow-hidden md:h-[400px] lg:h-[300px] cursor-pointer"
           >
             {/* Imagen con zoom suave */}
             <Image
@@ -36,13 +36,6 @@ const Collections = () => {
               height={800}
               className="w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-out"
             />
-
-            {/* Nombre centrado (siempre visible) */}
-            {/* <div className="absolute inset-0 flex items-center justify-center">
-              <h3 className="text-primero text-3xl font-bold z-10 text-center px-4 drop-shadow-lg">
-                {item.nombre}
-              </h3>
-            </div> */}
 
             {/* Overlay sin fondo, solo para contener las animaciones */}
             <div className="absolute inset-0 flex flex-col justify-between">
@@ -76,7 +69,7 @@ const Collections = () => {
             <Link
               href={`/colecciones/${item.url}`}
               key={index}
-              className="relative group overflow-hidden h-[250px] cursor-pointer shrink-0 w-[300px]"
+              className="relative group overflow-hidden h-[250px] cursor-pointer shrink-0 w-[400px]"
             >
               {/* Imagen con zoom suave */}
               <Image
@@ -86,13 +79,6 @@ const Collections = () => {
                 height={800}
                 className="w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-out"
               />
-
-              {/* Nombre centrado (siempre visible) */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <h3 className="text-primero text-3xl z-10 text-center px-4 drop-shadow-lg">
-                  {item.nombre}
-                </h3>
-              </div>
 
               {/* Overlay sin fondo, solo para contener las animaciones */}
               <div className="absolute inset-0 flex flex-col justify-between">

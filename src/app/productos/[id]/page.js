@@ -1,3 +1,4 @@
+import Footer from "@/components/footer/Footer";
 import BannerTop from "@/components/header/banner-top/BannerTop";
 import Navbar from "@/components/header/navbar/Navbar";
 import NavbarMobile from "@/components/header/navbar/NavbarMobile";
@@ -19,6 +20,7 @@ const page = () => {
       <Suspense fallback={<Loading />}>
         <ProductosId />
       </Suspense>
+      <Footer />
       <ModalTallas />
       <ModalImagen />
       <ModalCarritoCompras />

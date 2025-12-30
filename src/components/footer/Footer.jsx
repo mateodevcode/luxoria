@@ -96,15 +96,26 @@ const Footer = () => {
                 </Link>
               ))}
             </div>
-            <button className="flex items-center gap-2 bg-cuarto hover:bg-cuarto/80 text-white px-4 py-2 rounded-full cursor-pointer transition-colors duration-300 select-none active:scale-95">
+            <Link
+              href={footer.urlRedesSociales}
+              target="_blank"
+              className="flex items-center gap-2 bg-cuarto hover:bg-cuarto/80 text-white px-4 py-2 rounded-full cursor-pointer transition-colors duration-300 select-none active:scale-95"
+            >
               <FaRegHeart />
               <span className="text-sm ">{footer.botonRedesSociales}</span>
-            </button>
+            </Link>
           </div>
         </div>
         <div className="flex md:flex-row flex-col md:items-center justify-between md:gap-0 gap-4">
-          <div className="flex flex-col gap-2">
+          <div className="flex gap-1 items-center">
             <p className=" text-segundo">{footer.pieFooter}</p>
+            <Link
+              href={footer.urlEnlacePieFooter}
+              target="_blank"
+              className="text-segundo hover:text-cuarto transition-colors duration-300"
+            >
+              {footer.enlacePieFooter}
+            </Link>
           </div>
           <div className="flex items-center gap-1 px-4 py-2">
             {footer.mediosPago.map((medio, index) => (

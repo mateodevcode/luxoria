@@ -77,7 +77,10 @@ export const footer = {
     // },
   ],
   botonRedesSociales: "Siguenos en redes",
-  pieFooter: "© Luxoria 2025 - Desarrollado por Seventwo.",
+  urlRedesSociales: "https://www.instagram.com/luxoriacolombia",
+  pieFooter: "© Luxoria 2025 - Desarrollado por",
+  enlacePieFooter: "Seventwo.",
+  urlEnlacePieFooter: "https://www.seventwo.tech",
   mediosPago: [
     {
       name: "Nequi",
