@@ -6,7 +6,7 @@ import FacebookProvider from "next-auth/providers/facebook";
 import bcrypt from "bcryptjs";
 import { connectMongoDB } from "@/lib/db";
 import { iniciarSesionValidate } from "@/validations/iniciarSesion";
-import Usuario from "@/models/Usuario";
+import Usuario from "@/models/usuario";
 
 export const authOptions = {
   providers: [

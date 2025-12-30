@@ -18,6 +18,7 @@ const cartSchema = new Schema(
         name: String,
         price: Number,
         image: String,
+        size: String,
         quantity: {
           type: Number,
           default: 1,
@@ -36,9 +37,6 @@ const cartSchema = new Schema(
   },
   { timestamps: true }
 );
-
-// Índices para performance
-// cartSchema.index({ userId: 1 });
 
 const Cart = models.Cart || mongoose.model("Cart", cartSchema);
 export default Cart;

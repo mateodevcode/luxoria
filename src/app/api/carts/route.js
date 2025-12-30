@@ -44,7 +44,6 @@ export async function POST(req) {
     );
   } catch (error) {
     console.error("Error en POST /api/carts:", error);
-
     return NextResponse.json(
       {
         success: false,

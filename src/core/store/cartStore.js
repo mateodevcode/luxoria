@@ -39,21 +39,25 @@ export const useCartStore = create(
         const userId = get().userId;
         const currentItems = get().items;
 
-        // Buscar si el producto ya existe
+        // Buscar si el producto ya existe CON LA MISMA TALLA
         const exists = currentItems.find(
-          (i) => i.productId._id === product._id || i.productId === product._id
+          (i) =>
+            (i.productId._id === product._id || i.productId === product._id) &&
+            i.size === product.size
         );
+
         let newItems;
 
         if (exists) {
-          // Si existe, aumentar cantidad
+          // Si existe con la misma talla, aumentar cantidad
           newItems = currentItems.map((i) =>
-            i.productId._id === product._id || i.productId === product._id
+            (i.productId._id === product._id || i.productId === product._id) &&
+            i.size === product.size
               ? { ...i, quantity: i.quantity + 1 }
               : i
           );
         } else {
-          // Si no existe, agregarlo con estructura normalizada
+          // Si no existe o es diferente talla, agregarlo como nuevo item
           newItems = [
             ...currentItems,
             {
@@ -64,6 +68,7 @@ export const useCartStore = create(
                 imageUrl: product.imageUrl,
               },
               quantity: 1,
+              size: product.size,
             },
           ];
         }
@@ -76,10 +81,6 @@ export const useCartStore = create(
 
         // Actualizar estado local (instantáneo)
         set({ items: newItems, total: newTotal });
-        console.log("se actualizo en local", {
-          items: newItems,
-          total: newTotal,
-        });
 
         // Sincronizar con backend
         try {
@@ -88,20 +89,23 @@ export const useCartStore = create(
             items: newItems,
             total: newTotal,
           });
-          console.log("se actualizo en backend");
         } catch (error) {
           set({ error: error.message });
         }
       },
 
       // Eliminar producto del carrito
-      removeItem: async (productId) => {
+      removeItem: async (productId, size) => {
         const userId = get().userId;
         const currentItems = get().items;
 
-        // Filtrar el producto (compatible con ambas estructuras)
+        // Filtrar el producto por ID y talla (compatible con ambas estructuras)
         const newItems = currentItems.filter(
-          (i) => i.productId._id !== productId && i.productId !== productId
+          (i) =>
+            !(
+              (i.productId._id === productId || i.productId === productId) &&
+              i.size === size
+            )
         );
 
         // Recalcular total
@@ -125,10 +129,10 @@ export const useCartStore = create(
       },
 
       // Actualizar cantidad de un producto
-      updateQuantity: async (productId, quantity) => {
+      updateQuantity: async (productId, size, quantity) => {
         // Si cantidad es 0 o menos, eliminar el producto
         if (quantity < 1) {
-          get().removeItem(productId);
+          get().removeItem(productId, size);
           return;
         }
 
@@ -137,7 +141,8 @@ export const useCartStore = create(
 
         // Mapear items con la nueva cantidad (compatible con ambas estructuras)
         const newItems = currentItems.map((i) =>
-          i.productId._id === productId || i.productId === productId
+          (i.productId._id === productId || i.productId === productId) &&
+          i.size === size
             ? { ...i, quantity }
             : i
         );
@@ -183,8 +188,10 @@ export const useCartStore = create(
       },
 
       // Getter para obtener un item específico
-      getItem: (productId) => {
-        return get().items.find((i) => i.productId === productId);
+      getItem: (productId, size) => {
+        return get().items.find(
+          (i) => i.productId === productId && i.size === size
+        );
       },
 
       // Setter del error

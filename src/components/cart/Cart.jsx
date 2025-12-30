@@ -6,8 +6,7 @@ import { Trash2, Plus, Minus, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 
 export function Cart() {
-  const { items, total, removeItem, updateQuantity, clearCart } =
-    useCartStore();
+  const { items, removeItem, updateQuantity } = useCartStore();
 
   if (items.length === 0) {
     return (
@@ -33,62 +32,49 @@ export function Cart() {
               height={100}
               className="object-cover"
             />
-            <div>
-              <h4 className="font-semibold text-sm">{item.productId.nombre}</h4>
-              <p>M</p>
-              <p className="text-gray-600 text-xs">
+            <div className="flex flex-col gap-1">
+              <h4 className="font-medium text-xs">{item.productId.nombre}</h4>
+              <p className="text-xs">Talla: {item.size}</p>
+              <p className="text-segundo text-sm font-semibold">
                 {formatoDinero(item.productId.precio)}
               </p>
             </div>
           </div>
 
           <div className="flex flex-col items-end gap-1">
-            <div className="flex items-center">
-              <button
-                onClick={() =>
-                  updateQuantity(item.productId, item.quantity - 1)
-                }
-                disabled={item.quantity === 1}
-                className="p-2 hover:bg-cuarto/10 rounded-xs h-10 w-10 flex items-center justify-center border border-segundo/10 cursor-pointer active:scale-95 duration-200"
-              >
-                <Minus className="w-3 h-3" />
-              </button>
-              <span className="p-2 text-center font-bold h-10 w-10 flex items-center justify-center">
+            <div className="flex items-center gap-1">
+              {item.quantity > 1 && (
+                <button
+                  onClick={() =>
+                    updateQuantity(item.productId, item.size, item.quantity - 1)
+                  }
+                  disabled={item.quantity === 1}
+                  className="p-2 hover:bg-cuarto/10 rounded-xs h-10 w-10 flex items-center justify-center border border-segundo/10 cursor-pointer active:scale-95 duration-200 hover:text-cuarto"
+                >
+                  <Minus className="w-3 h-3" />
+                </button>
+              )}
+              <span className="p-2 rounded-xs h-10 w-10 flex items-center justify-center border border-segundo/10 cursor-pointer active:scale-95 duration-200 select-none">
                 {item.quantity}
               </span>
               <button
                 onClick={() =>
-                  updateQuantity(item.productId, item.quantity + 1)
+                  updateQuantity(item.productId, item.size, item.quantity + 1)
                 }
-                className="p-2 hover:bg-cuarto/10 rounded-xs h-10 w-10 flex items-center justify-center border border-segundo/10 cursor-pointer active:scale-95 duration-200"
+                className="p-2 hover:bg-cuarto/10 rounded-xs h-10 w-10 flex items-center justify-center border border-segundo/10 cursor-pointer active:scale-95 duration-200 hover:text-cuarto"
               >
                 <Plus className="w-3 h-3" />
               </button>
             </div>
             <button
-              onClick={() => removeItem(item.productId)}
-              className="p-2 hover:bg-red-600/5 rounded-xs h-10 w-10 flex items-center justify-center border border-segundo/10 cursor-pointer active:scale-95 duration-200"
+              onClick={() => removeItem(item.productId, item.size)}
+              className="p-2 hover:bg-red-600/5 rounded-xs h-10 w-10 flex items-center justify-center border border-segundo/10 cursor-pointer active:scale-95 duration-200 hover:text-red-600"
             >
               <Trash2 className="w-3 h-3" />
             </button>
           </div>
         </div>
       ))}
-
-      {/* <div className="border-t pt-4 mt-4">
-        <div className="flex justify-between mb-4">
-          <span className="text-xl font-bold">Total:</span>
-          <span className="text-2xl font-bold text-segundo">
-            {formatoDinero(total)}
-          </span>
-        </div>
-        <button
-          onClick={clearCart}
-          className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded-xs"
-        >
-          Vaciar Carrito
-        </button>
-      </div> */}
     </div>
   );
 }

@@ -14,6 +14,7 @@ export const validateCart = (data) => {
       if (!item.productId) {
         errors[`items[${index}].productId`] = "productId es requerido";
       }
+
       if (typeof item.quantity !== "number" || item.quantity < 1) {
         errors[`items[${index}].quantity`] =
           "quantity debe ser un número mayor a 0";

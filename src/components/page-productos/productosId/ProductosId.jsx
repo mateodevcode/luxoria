@@ -11,7 +11,7 @@ import { useVistoReciente } from "@/hooks/useVistoReciente";
 import { useParams } from "next/navigation";
 
 const ProductosId = () => {
-  const { productos } = useContext(AppContext);
+  const { productos, setOpenModalTallas } = useContext(AppContext);
   const [showFooterNav, setShowFooterNav] = useState(false);
   const targetRef = useRef(null);
   const { recentlyViewed, addViewed, clearViewed, isLoaded } =
@@ -50,7 +50,7 @@ const ProductosId = () => {
   }, []);
 
   return (
-    <div className="bg-primero pb-20">
+    <div className="bg-primero pb-20 font-poppins">
       <ProductoDetalle />
 
       <div className="w-11/12 md:w-9/12 mx-auto py-10">
@@ -82,7 +82,7 @@ const ProductosId = () => {
           <div className="flex items-center gap-4 mx-4 md:mx-0">
             <div className="h-16 w-16 md:h-16 md:w-16 flex items-center gap-4">
               <Image
-                src={producto?.imageUrl}
+                src={producto?.imageUrl || "/logo/icon-2.png"}
                 alt="imagen producto"
                 className="h-full object-cover rounded-full"
                 width={500}
@@ -108,8 +108,11 @@ const ProductosId = () => {
           </div>
 
           <div className="mx-4 md:mx-0">
-            <button className="uppercase bg-segundo hover:bg-segundo/80 px-6 py-2 rounded font-semibold text-sm text-primero hover:active:scale-95 transition-all duration-300">
-              add
+            <button
+              className="uppercase bg-segundo hover:bg-segundo/80 px-6 py-2 rounded-xs font-semibold text-sm text-primero hover:active:scale-95 transition-all duration-300 cursor-pointer select-none"
+              onClick={() => setOpenModalTallas(true)}
+            >
+              agregar
             </button>
           </div>
         </nav>

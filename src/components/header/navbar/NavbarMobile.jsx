@@ -7,6 +7,7 @@ import { HiMenuAlt2 } from "react-icons/hi";
 import { logo } from "@/data/logo";
 import Link from "next/link";
 import { AppContext } from "@/context/AppContext";
+import { useCart } from "@/core/hooks/useCart";
 
 const NavbarMobile = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -15,6 +16,7 @@ const NavbarMobile = () => {
     setOpenModalMenuHamburguesa,
     anchoPantalla,
   } = useContext(AppContext);
+  const { items } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,10 +63,21 @@ const NavbarMobile = () => {
           className="relative group cursor-pointer select-none mx-3 md:hidden md:w-40"
           onClick={() => setOpenModalCarritoCompras(true)}
         >
-          <AiOutlineShopping className="text-2xl md:text-base relative z-10 text-segundo hover:text-cuarto" />
-          <span className="absolute inset-0 flex items-center justify-center">
-            <span className="hover-circle"></span>
-          </span>
+          <AiOutlineShopping
+            className={`text-2xl md:text-base relative z-10 text-segundo ${
+              items.length === 0 ? "hover:text-cuarto" : ""
+            }`}
+          />
+          {items.length > 0 && (
+            <div className="absolute top-1 right-0.5">
+              <div className="relative flex items-center justify-center w-5 h-5">
+                {/* Onda pulsante */}
+                <span className="absolute inline-flex w-full h-full rounded-full bg-cuarto opacity-50 animate-ping"></span>
+                {/* Punto central */}
+                <span className="relative inline-flex w-3.5 h-3.5 bg-cuarto/50"></span>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

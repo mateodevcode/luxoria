@@ -43,6 +43,7 @@ export const AppProvider = ({ children }) => {
   });
   const [loading, setLoading] = useState(false);
   const [usuarios, setUsuarios] = useState([]);
+  const [openModalTallas, setOpenModalTallas] = useState(false);
 
   useEffect(() => {
     // Solo se ejecuta en el cliente
@@ -158,6 +159,8 @@ export const AppProvider = ({ children }) => {
         fetchUsuario,
         usuarios,
         setUsuarios,
+        openModalTallas,
+        setOpenModalTallas,
       }}
     >
       {children}

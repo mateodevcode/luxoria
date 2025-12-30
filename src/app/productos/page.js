@@ -2,6 +2,7 @@ import Footer from "@/components/footer/Footer";
 import BannerTop from "@/components/header/banner-top/BannerTop";
 import CarruselNav from "@/components/header/carrusel/CarruselNav";
 import Navbar from "@/components/header/navbar/Navbar";
+import NavbarMobile from "@/components/header/navbar/NavbarMobile";
 import ModalCarritoCompras from "@/components/modales/ModalCarritoCompras";
 import ModalMenuHamburguesa from "@/components/modales/ModalMenuHamburguesa";
 import PageProductos from "@/components/page-productos/PageProductos";
@@ -15,8 +16,9 @@ const page = () => {
     <div className="relative font-poppins">
       <BannerTop />
       <Navbar />
+      <NavbarMobile />
       <CarruselNav />
-      {/* <RedesLateral /> */}
+      <RedesLateral />
       <PageProductos />
       <ModalImagen />
       <ModalCarritoCompras />
