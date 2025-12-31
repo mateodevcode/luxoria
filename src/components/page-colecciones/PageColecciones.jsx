@@ -30,7 +30,7 @@ const Collections = () => {
           >
             {/* Imagen con zoom suave */}
             <Image
-              src={`${item.imageUrl}`}
+              src={item.imageUrlHor || "/logo/icon-2.png"}
               alt={`Collection ${index + 1}`}
               width={800}
               height={800}
@@ -73,7 +73,7 @@ const Collections = () => {
             >
               {/* Imagen con zoom suave */}
               <Image
-                src={`${item.imageUrl}`}
+                src={item.imageUrlHor || "/logo/icon-2.png"}
                 alt={`Collection ${index + 1}`}
                 width={800}
                 height={800}

@@ -44,6 +44,7 @@ const ColeccionId = () => {
   }, [isPromotionVisible, anchoPantalla]);
 
   const coleccionActual = colecciones.find((col) => col.url === params.id);
+  const caracteristicas = coleccionActual?.caracteristicas || [];
 
   // Función para filtrar productos según el tab activo
   const getProductosFiltrados = () => {
@@ -86,8 +87,8 @@ const ColeccionId = () => {
         {/* Imagen - izquierda */}
         <div className="w-full md:w-1/2 h-60 md:h-96">
           <Image
-            src={coleccionActual?.imageUrl}
-            alt={coleccionActual?.nombre}
+            src={coleccionActual?.imageUrlHor || "/logo/logo.png"}
+            alt={coleccionActual?.nombre || "banner"}
             width={1000}
             height={1000}
             className="w-full h-full object-cover"
@@ -96,8 +97,8 @@ const ColeccionId = () => {
 
         {/* Contenido - derecha */}
         <div className="w-full md:w-1/2 h-60 md:h-96 bg-linear-to-br from-gray-100 to-gray-200 flex items-center justify-center flex-col p-6 font-light">
-          <ul className="flex flex-col gap-4 text-segundo text-sm md:text-base">
-            {productoInfo.frases.map((frase, index) => (
+          <ul className="flex flex-col gap-4 text-segundo text-sm md:text-base justify-start w-full">
+            {caracteristicas.map((frase, index) => (
               <li
                 key={`caracteristica-${index}`}
                 className="flex items-center gap-2 animate-fadeIn"
@@ -158,7 +159,7 @@ const ColeccionId = () => {
         {/* Publicidad condicional - siempre primera */}
         {haveAPromo && (
           <div className="overflow-hidden flex items-center justify-start h-[600px] flex-col">
-            <div className="bg-linear-to-br from-gray-200 via-gray-100 to-gray-300 hover:via-gray-300 w-full h-full text-segundo flex items-center justify-center flex-col max-h-[500px] transition-all duration-300">
+            <div className="bg-linear-to-br from-primero via-primero/50 to-primero/50 w-full h-full text-segundo flex items-center justify-center flex-col max-h-[500px] transition-all duration-300">
               {/* <div className="text-center p-4">
                 <h3 className="text-xl font-bold mb-2">¡Oferta Especial!</h3>
                 <p className="text-lg">Hasta 50% de descuento</p>
@@ -168,8 +169,8 @@ const ColeccionId = () => {
                 </button>
               </div> */}
               <Image
-                src="/promo/promo.png"
-                alt="promo"
+                src={coleccionActual?.imageUrlVer || "/logo/icon-2.png"}
+                alt={coleccionActual?.nombre || "promo"}
                 width={1000}
                 height={1000}
               />

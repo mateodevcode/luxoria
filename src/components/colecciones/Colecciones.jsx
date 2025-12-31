@@ -7,31 +7,8 @@ import { useRouter } from "next/navigation";
 import React, { useContext } from "react";
 
 const Colecciones = () => {
-  const { anchoPantalla } = useContext(AppContext);
+  const { anchoPantalla, colecciones } = useContext(AppContext);
   const router = useRouter();
-  const colecciones = [
-    {
-      id: 1,
-      title: "Colección 1",
-      image: "/colecciones/billance-fondo.png",
-      description: "Descripción colección 1",
-      url: "/colecciones/billance",
-    },
-    {
-      id: 2,
-      title: "Colección 2",
-      image: "/colecciones/nova-fondo.png",
-      description: "Descripción colección 2",
-      url: "/colecciones/nova",
-    },
-    {
-      id: 3,
-      title: "Colección 3",
-      image: "/colecciones/prisma-fondo.png",
-      description: "Descripción colección 3",
-      url: "/colecciones/prisma",
-    },
-  ];
 
   const coleccionesMobile = colecciones.slice(0, 2);
   const coleccionesShow =
@@ -43,14 +20,14 @@ const Colecciones = () => {
         {coleccionesShow.map((coleccion, index) => (
           <div
             key={index}
-            onClick={() => router.push(coleccion.url)}
+            onClick={() => router.push(`/colecciones/${coleccion.url}`)}
             className={`group relative h-72 overflow-hidden cursor-pointer transition-all duration-300 ${
               index === 1 ? "border-l border-r border-segundo/20" : ""
             }`}
           >
             <Image
-              src={coleccion.image}
-              alt={coleccion.title}
+              src={coleccion.imageUrlPortada || "/logo/logo.png"}
+              alt={coleccion.nombre || "banner"}
               fill
               className="object-cover transition-transform duration-300"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
