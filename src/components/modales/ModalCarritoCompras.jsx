@@ -15,6 +15,7 @@ import { toast } from "sonner";
 import { useCartStore } from "@/core/store/cartStore";
 import { ChevronDown, CopyX, Dot, Pointer, ShoppingBag } from "lucide-react";
 import { Listbox } from "@headlessui/react";
+import { BsWhatsapp } from "react-icons/bs";
 
 export default function ModalCarritoCompras() {
   const { openModalCarritoCompras, setOpenModalCarritoCompras, productos } =
@@ -109,7 +110,7 @@ export default function ModalCarritoCompras() {
                 }`}
               >
                 <button
-                  className="w-full bg-segundo hover:bg-segundo/80 text-primero text-center p-3 uppercase mb-4 cursor-pointer select-none active:scale-95 duration-75 font-medium text-xs"
+                  className="w-full bg-segundo hover:bg-segundo/80 text-primero text-center p-3 uppercase mb-4 cursor-pointer select-none active:scale-95 duration-75 font-medium text-xs rounded-xs"
                   onClick={() => {
                     setOpenModalCarritoCompras(false);
                     router.push("/productos");
@@ -172,7 +173,7 @@ export default function ModalCarritoCompras() {
                               >
                                 {({ open }) => (
                                   <div>
-                                    <Listbox.Button className="bg-transparent focus text-segundo/80 border border-segundo/10 w-full text-sm rounded-xs focus:ring-1 focus:ring-cuarto focus:border-transparent outline-none transition h-12 px-4">
+                                    <Listbox.Button className="bg-transparent focus text-segundo/80 border border-segundo/10 w-full text-sm rounded-xs focus:ring-1 focus:ring-cuarto focus:border-transparent outline-none transition h-12 px-4 ">
                                       <div className="flex items-center gap-2">
                                         <span className="capitalize">
                                           {tallaSeleccionada}
@@ -213,7 +214,7 @@ export default function ModalCarritoCompras() {
                             </div>
 
                             <button
-                              className={`w-1/2 p-3 bg-segundo hover:bg-segundo/80 text-primero text-xs font-medium cursor-pointer select-none active:scale-95 duration-75 uppercase h-12`}
+                              className={`w-1/2 p-3 bg-segundo hover:bg-segundo/80 text-primero text-xs font-medium cursor-pointer select-none active:scale-95 duration-75 uppercase h-12 rounded-xs`}
                               onClick={async (e) => {
                                 e.stopPropagation();
 
@@ -225,15 +226,11 @@ export default function ModalCarritoCompras() {
                                   });
                                   return;
                                 }
-                                console.log({
+
+                                await addItem({
                                   ...producto,
                                   size: tallaSeleccionada,
                                 });
-
-                                // await addItem({
-                                //   ...producto,
-                                //   size: tallaSeleccionada,
-                                // });
                               }}
                             >
                               comprar
@@ -245,9 +242,27 @@ export default function ModalCarritoCompras() {
                   })}
 
                 {items.length > 0 && (
-                  <div className="sticky bottom-0 left-0 right-0 w-full bg-primero flex items-center justify-center h-20 py-4">
-                    <button className="shiny-button bg-segundo text-primero p-3 w-full flex items-center justify-center relative overflow-hidden">
-                      <span>Pagar</span> <Dot className="text-primero" />{" "}
+                  <div className="sticky bottom-0 left-0 right-0 w-full bg-primero flex items-center justify-center flex-col gap-2">
+                    <button
+                      className="shiny-button bg-segundo text-primero p-3 w-full flex items-center justify-center relative overflow-hidden rounded-xs"
+                      onClick={() => {
+                        alert("pagar con tarjeta");
+                      }}
+                    >
+                      <span>Pagar con tarjeta</span>{" "}
+                      <Dot className="text-primero" />{" "}
+                      <span className="font-semibold">
+                        {formatoDinero(total)}
+                      </span>
+                    </button>
+                    <button
+                      className="shiny-button bg-green-600 text-primero p-3 w-full flex items-center justify-center relative overflow-hidden rounded-xs gap-2"
+                      onClick={() => {
+                        alert("pagar con whatsapp");
+                      }}
+                    >
+                      <span>Pagar por</span>{" "}
+                      <BsWhatsapp className="text-primero" />{" "}
                       <span className="font-semibold">
                         {formatoDinero(total)}
                       </span>

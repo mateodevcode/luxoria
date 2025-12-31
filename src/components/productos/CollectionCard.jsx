@@ -123,20 +123,20 @@ export const CollectionCard = ({ item, filtroProductos }) => {
 
         {/* Etiqueta Popular */}
         {item.isPopular && (
-          <div className="absolute bottom-4 left-4 text-xs text-primero opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none bg-segundo  px-2 py-1">
+          <div className="absolute bottom-4 left-4 text-xs text-primero opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none bg-segundo  px-2 py-1 rounded-xs">
             Popular Style 🔥
           </div>
         )}
 
         {/* Discount */}
         {item.descuento > 0 && (
-          <div className="absolute top-4 right-4 text-xs text-primero opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none bg-segundo  px-2 py-1">
+          <div className="absolute top-4 right-4 text-xs text-primero opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none bg-segundo  px-2 py-1 rounded-xs">
             promo {item.descuento}%
           </div>
         )}
 
         <div className="absolute bottom-0 p-2 bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-full bg-primero">
-          <div className="w-full h-10 bg-segundo flex items-center justify-center cursor-pointer select-none duration-75 relative group/btn">
+          <div className="w-full h-10 bg-segundo flex items-center justify-center cursor-pointer select-none duration-75 relative group/btn rounded-xs">
             <span className="text-primero transition-opacity duration-200 group-hover/btn:opacity-0">
               Añadir al carrito
             </span>
