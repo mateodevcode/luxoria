@@ -14,9 +14,9 @@ const Footer = () => {
 
   const handleEnlacesPrincipales = (enlace) => {
     if (enlace === "/contacto") {
-      handleMensaje("Hola, me gustaria mas información.");
+      handleMensaje("Hola, me gustaría mas información.");
     } else if (enlace === "/soporte") {
-      handleMensaje("Necesito ayuda.");
+      handleMensaje("Necesito ayuda.", 1);
     } else {
       router.push(enlace);
     }

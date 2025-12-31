@@ -28,7 +28,9 @@ const useMensaje = () => {
         return;
       }
 
-      const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+      const url = `https://wa.me/${
+        botonWhatsapp.prefix
+      }${numero}?text=${encodeURIComponent(mensaje)}`;
       window.open(url, "_blank");
     }, 1500);
   };

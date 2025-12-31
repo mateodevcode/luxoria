@@ -5,5 +5,6 @@ export const botonWhatsapp = {
     "👋 Gracias por contactarnos. ¿En qué puedo ayudarte?",
     "Quieres más información de algún producto. 💪🔥",
   ],
-  numeros: ["3046005435", "3002888529"],
+  numeros: ["3233424470", "3002888529"],
+  prefix: "+57",
 };

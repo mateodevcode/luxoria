@@ -16,6 +16,7 @@ import useMensaje from "@/hooks/useMensaje";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/core/hooks/useCart";
+import { botonWhatsapp } from "@/data/boton-wp";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -89,7 +90,7 @@ const Navbar = () => {
             }
           >
             <Phone className="w-3 h-3" />
-            <span className="text-sm">+57 304 6005435</span>
+            <span className="text-sm">+57 {botonWhatsapp.numeros[0]}</span>
           </button>
         </div>
 
