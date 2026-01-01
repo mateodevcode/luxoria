@@ -15,6 +15,7 @@ import Reviews from "@/components/reviews/Reviews";
 import ModalReview from "@/components/reviews/ModalReviews";
 import CarruselBanner from "@/components/carrusel-banner/CarruselBanner";
 import NavbarMobile from "@/components/header/navbar/NavbarMobile";
+import ModalConfirmacionOrden from "../modales/carritoCompras/ModalConfirmacionOrden";
 
 export default function HomePage() {
   return (
@@ -33,6 +34,7 @@ export default function HomePage() {
       <ModalImagen />
       <CarruselBanner />
       <ModalReview />
+      <ModalConfirmacionOrden />
       <Reviews />
       <Footer />
       <style>{scrollbarStyles.home}</style>

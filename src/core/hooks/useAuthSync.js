@@ -26,7 +26,6 @@ export const useAuthSync = () => {
         id: session.user.id,
         name: session.user.name,
         email: session.user.email,
-        imageUrl: session.user.image, // Mapear image a imageUrl
         image: session.user.image,
         role: session.user.role,
       });

@@ -17,7 +17,7 @@ export async function POST(req) {
       return NextResponse.json(
         {
           success: false,
-          message: "Validación fallida",
+          error: "Validación fallida",
         },
         { status: 400 }
       );
@@ -47,7 +47,7 @@ export async function POST(req) {
     return NextResponse.json(
       {
         success: false,
-        message: error.message,
+        error: error.message,
       },
       { status: 500 }
     );

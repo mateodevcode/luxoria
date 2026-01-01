@@ -10,7 +10,7 @@ import useUsuario from "@/hooks/useUsuario";
 import { toast } from "sonner";
 
 export function FormRegistrarse() {
-  const { formDataUsuario, fetchUsuario } = useContext(AppContext);
+  const { formDataUsuario, fetchUsuarios } = useContext(AppContext);
   const { crearUsuario, handleChange, loading } = useUsuario();
 
   const [confirmarPassword, setConfirmarPassword] = useState("");
@@ -18,7 +18,7 @@ export function FormRegistrarse() {
   const [verConfirmarContraseña, setVerConfirmarContraseña] = useState(false);
 
   useEffect(() => {
-    fetchUsuario();
+    fetchUsuarios();
   }, []);
 
   return (

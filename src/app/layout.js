@@ -5,7 +5,7 @@ import { Toaster } from "sonner";
 import BotonWhatsapp from "@/components/botonFlotante/BotonWhatsapp";
 import { AuthProvider } from "./Providers";
 import ModalMenuHamburguesa from "@/components/modales/ModalMenuHamburguesa";
-import ModalCarritoCompras from "@/components/modales/ModalCarritoCompras";
+import ModalCarritoCompras from "@/components/modales/carritoCompras/ModalCarritoCompras";
 import Search from "@/components/header/hover-card/Search";
 import SearchResult from "@/components/header/hover-card/SearchResult";
 

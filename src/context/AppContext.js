@@ -1,6 +1,8 @@
 "use client";
 
 import { apiServerBackend } from "@/app/actions/apiServerBackend";
+import { useAuthStore } from "@/core/store/authStore";
+import { useSession } from "next-auth/react";
 import { createContext, useEffect, useState } from "react";
 import { toast } from "sonner";
 
@@ -44,6 +46,9 @@ export const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [usuarios, setUsuarios] = useState([]);
   const [openModalTallas, setOpenModalTallas] = useState(false);
+  const [openModalConfirmacionOrden, setOpenModalConfirmacionOrden] =
+    useState(false);
+  const [idOrdenGenerada, setIdOrdenGenerada] = useState(null);
 
   useEffect(() => {
     // Solo se ejecuta en el cliente
@@ -105,7 +110,7 @@ export const AppProvider = ({ children }) => {
     cargarProductos();
   }, []);
 
-  const fetchUsuario = async () => {
+  const fetchUsuarios = async () => {
     try {
       const res = await apiServerBackend(`api/usuarios`, "GET");
       const { data: usuariosRes, message, success, error } = res;
@@ -156,11 +161,15 @@ export const AppProvider = ({ children }) => {
         setFormDataUsuario,
         loading,
         setLoading,
-        fetchUsuario,
+        fetchUsuarios,
         usuarios,
         setUsuarios,
         openModalTallas,
         setOpenModalTallas,
+        openModalConfirmacionOrden,
+        setOpenModalConfirmacionOrden,
+        idOrdenGenerada,
+        setIdOrdenGenerada,
       }}
     >
       {children}
