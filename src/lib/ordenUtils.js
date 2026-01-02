@@ -1,46 +1,21 @@
-import { apiServerBackend } from "@/app/actions/apiServerBackend";
+/**
+ * @deprecated Este archivo está deprecado.
+ * Usa el hook centralizado `useOrden` de `@/core/hooks/useOrdenStore` en su lugar.
+ *
+ * Este archivo se mantiene temporalmente solo para compatibilidad con código legacy.
+ * Todas las funciones de órdenes ahora están en:
+ * - API Layer: @/core/api/ordenAPI.js
+ * - Store: @/core/store/ordenStore.js
+ * - Hook: @/core/hooks/useOrdenStore.js
+ */
+
 import { botonWhatsapp } from "@/data/boton-wp";
 
-export const crearOrdenYEnviarWhatsapp = async (
-  cliente,
-  productos,
-  resumen,
-  numeroVendedor,
-  metodoPago = "whatsapp"
-) => {
-  try {
-    // 1. Crear la orden en la BD
-    const res = await apiServerBackend("/api/ordenes", "POST", {
-      cliente,
-      productos,
-      resumen,
-      metodoPago,
-    });
-
-    if (!res.success) {
-      throw new Error(res.error || "Error al crear la orden");
-    }
-
-    const { orden, orderId, link } = res.data;
-
-    // 2. Enviar a WhatsApp
-    enviarAWhatsapp(link, numeroVendedor, orderId);
-
-    return {
-      success: true,
-      orderId,
-      link,
-      mensaje: `✅ Orden creada correctamente\n\n🆔 ID: ${orderId}`,
-    };
-  } catch (error) {
-    console.error("Error creando orden:", error);
-    return {
-      success: false,
-      error: error.message || "Error al crear la orden",
-    };
-  }
-};
-
+/**
+ * Helper para enviar mensaje por WhatsApp
+ * Esta función se mantiene aquí solo para compatibilidad
+ * @deprecated Usa `useOrden().crearOrdenYEnviarWhatsapp()` en su lugar
+ */
 export const enviarAWhatsapp = (link, numeroVendedor, orderId) => {
   const mensaje = encodeURIComponent(
     `🔔 *NUEVA SOLICITUD DE PAGO*\n\n` +
@@ -53,81 +28,66 @@ export const enviarAWhatsapp = (link, numeroVendedor, orderId) => {
   window.open(urlWhatsapp, "_blank");
 };
 
-export const obtenerOrden = async (idOrden) => {
-  try {
-    const res = await apiServerBackend(`/api/ordenes/${idOrden}`);
+// ==================== FUNCIONES DEPRECADAS ====================
+// Las siguientes funciones están deprecadas.
+// Usa el hook `useOrden` de @/core/hooks/useOrdenStore en su lugar.
 
-    if (res.success) {
-      return res.data;
-    } else {
-      throw new Error(res.error);
-    }
-  } catch (error) {
-    console.error("Error obteniendo orden:", error);
-    return null;
-  }
+/**
+ * @deprecated Usa `useOrden().crearOrdenYEnviarWhatsapp()` en su lugar
+ */
+export const crearOrdenYEnviarWhatsapp = async () => {
+  console.warn(
+    "⚠️ crearOrdenYEnviarWhatsapp está deprecado. Usa useOrden().crearOrdenYEnviarWhatsapp() en su lugar."
+  );
+  throw new Error(
+    "Esta función está deprecada. Usa useOrden().crearOrdenYEnviarWhatsapp() del core."
+  );
 };
 
-export const obtenerMisOrdenes = async (email) => {
-  try {
-    const res = await apiServerBackend(`/api/ordenes?email=${email}`);
-
-    if (res.success) {
-      return res.data;
-    } else {
-      throw new Error(res.error);
-    }
-  } catch (error) {
-    console.error("Error obteniendo órdenes:", error);
-    return [];
-  }
+/**
+ * @deprecated Usa `useOrden().cargarOrden()` en su lugar
+ */
+export const obtenerOrden = async () => {
+  console.warn(
+    "⚠️ obtenerOrden está deprecado. Usa useOrden().cargarOrden() en su lugar."
+  );
+  throw new Error(
+    "Esta función está deprecada. Usa useOrden().cargarOrden() del core."
+  );
 };
 
-export const actualizarEstadoOrden = async (
-  idOrden,
-  nuevoEstado,
-  notas = ""
-) => {
-  try {
-    const res = await apiServerBackend(`/api/ordenes/${idOrden}`, "PUT", {
-      estado: nuevoEstado,
-      notasVendedor: notas,
-    });
-
-    if (res.success) {
-      return {
-        success: true,
-        data: res.data,
-      };
-    } else {
-      throw new Error(res.error);
-    }
-  } catch (error) {
-    console.error("Error actualizando orden:", error);
-    return {
-      success: false,
-      error: error.message,
-    };
-  }
+/**
+ * @deprecated Usa `useOrden().cargarMisOrdenes()` en su lugar
+ */
+export const obtenerMisOrdenes = async () => {
+  console.warn(
+    "⚠️ obtenerMisOrdenes está deprecado. Usa useOrden().cargarMisOrdenes() en su lugar."
+  );
+  throw new Error(
+    "Esta función está deprecada. Usa useOrden().cargarMisOrdenes() del core."
+  );
 };
 
-export const cancelarOrden = async (idOrden) => {
-  try {
-    const res = await apiServerBackend(`/api/ordenes/${idOrden}`, "DELETE");
+/**
+ * @deprecated Usa `useOrden().actualizarEstadoOrden()` en su lugar
+ */
+export const actualizarEstadoOrden = async () => {
+  console.warn(
+    "⚠️ actualizarEstadoOrden está deprecado. Usa useOrden().actualizarEstadoOrden() en su lugar."
+  );
+  throw new Error(
+    "Esta función está deprecada. Usa useOrden().actualizarEstadoOrden() del core."
+  );
+};
 
-    if (res.success) {
-      return {
-        success: true,
-        data: res.data,
-      };
-    } else {
-      throw new Error(res.error);
-    }
-  } catch (error) {
-    console.error("Error cancelando orden:", error);
-    return {
-      success: false,
-      error: error.message,
-    };
-  }
+/**
+ * @deprecated Usa `useOrden().cancelarOrden()` en su lugar
+ */
+export const cancelarOrden = async () => {
+  console.warn(
+    "⚠️ cancelarOrden está deprecado. Usa useOrden().cancelarOrden() en su lugar."
+  );
+  throw new Error(
+    "Esta función está deprecada. Usa useOrden().cancelarOrden() del core."
+  );
 };

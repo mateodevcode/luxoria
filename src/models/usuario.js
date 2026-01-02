@@ -79,6 +79,10 @@ const usuarioSchema = new Schema(
       type: Date,
       default: Date.now,
     },
+    is_vendedor: {
+      type: Boolean,
+      default: false,
+    },
     notificaciones: {
       type: [notificacionSchema], // ✅ subdocumentos con _id
       default: [
